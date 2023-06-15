@@ -11,6 +11,11 @@
 		A579C9672A3B6EA500D0E5B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579C9662A3B6EA500D0E5B1 /* ContentView.swift */; };
 		A579C9692A3B6EA600D0E5B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A579C9682A3B6EA600D0E5B1 /* Assets.xcassets */; };
 		A579C96D2A3B6EA600D0E5B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A579C96C2A3B6EA600D0E5B1 /* Preview Assets.xcassets */; };
+		A579C9792A3B706100D0E5B1 /* BannerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579C9742A3B706100D0E5B1 /* BannerPreview.swift */; };
+		A579C97A2A3B706100D0E5B1 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579C9752A3B706100D0E5B1 /* BannerView.swift */; };
+		A579C97B2A3B706100D0E5B1 /* BannerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579C9762A3B706100D0E5B1 /* BannerData.swift */; };
+		A579C97C2A3B706100D0E5B1 /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579C9772A3B706100D0E5B1 /* BannerModifier.swift */; };
+		A579C97D2A3B706100D0E5B1 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579C9782A3B706100D0E5B1 /* View+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +25,11 @@
 		A579C9682A3B6EA600D0E5B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A579C96A2A3B6EA600D0E5B1 /* SwiftUIKit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftUIKit.entitlements; sourceTree = "<group>"; };
 		A579C96C2A3B6EA600D0E5B1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A579C9742A3B706100D0E5B1 /* BannerPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerPreview.swift; sourceTree = "<group>"; };
+		A579C9752A3B706100D0E5B1 /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		A579C9762A3B706100D0E5B1 /* BannerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerData.swift; sourceTree = "<group>"; };
+		A579C9772A3B706100D0E5B1 /* BannerModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
+		A579C9782A3B706100D0E5B1 /* View+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,7 @@
 				A579C9662A3B6EA500D0E5B1 /* ContentView.swift */,
 				A579C9682A3B6EA600D0E5B1 /* Assets.xcassets */,
 				A579C96A2A3B6EA600D0E5B1 /* SwiftUIKit.entitlements */,
+				A579C9732A3B706100D0E5B1 /* BannerComponent */,
 				A579C96B2A3B6EA600D0E5B1 /* Preview Content */,
 			);
 			path = SwiftUIKit;
@@ -67,6 +78,18 @@
 				A579C96C2A3B6EA600D0E5B1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A579C9732A3B706100D0E5B1 /* BannerComponent */ = {
+			isa = PBXGroup;
+			children = (
+				A579C9742A3B706100D0E5B1 /* BannerPreview.swift */,
+				A579C9752A3B706100D0E5B1 /* BannerView.swift */,
+				A579C9762A3B706100D0E5B1 /* BannerData.swift */,
+				A579C9772A3B706100D0E5B1 /* BannerModifier.swift */,
+				A579C9782A3B706100D0E5B1 /* View+Ext.swift */,
+			);
+			path = BannerComponent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +162,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A579C97D2A3B706100D0E5B1 /* View+Ext.swift in Sources */,
+				A579C97A2A3B706100D0E5B1 /* BannerView.swift in Sources */,
 				A579C9672A3B6EA500D0E5B1 /* ContentView.swift in Sources */,
+				A579C9792A3B706100D0E5B1 /* BannerPreview.swift in Sources */,
+				A579C97B2A3B706100D0E5B1 /* BannerData.swift in Sources */,
+				A579C97C2A3B706100D0E5B1 /* BannerModifier.swift in Sources */,
 				A579C9652A3B6EA500D0E5B1 /* SwiftUIKitApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
