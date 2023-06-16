@@ -28,9 +28,9 @@ struct BannerPreview: View {
                         } label: {
                             Text(banner.type.typeName.capitalized + " banner")
                         }
-
                     }
                 }
+                
                 Section("Indefinite banner") {
                     Button("Start loading") {
                         withAnimation {

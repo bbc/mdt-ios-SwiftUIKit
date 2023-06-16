@@ -29,7 +29,8 @@ struct BannerView: View {
                 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(data.detail)
-                        .font(.subheadline)
+                        .font(.callout)
+                        .fontWeight(.semibold)
                 }
                 Spacer()
             }
@@ -39,13 +40,20 @@ struct BannerView: View {
             .cornerRadius(8)
             .shadow(radius: 3)
             Spacer()
-        } //VStack
+        }
         .padding()
     }
 }
 
 struct BannerView_Previews: PreviewProvider {
     static var previews: some View {
-        BannerView(data: BannerData(type: .loading, detail: "One second"))
+        Group {
+            BannerView(data: BannerData(type: .loading, detail: "One second"))
+            BannerView(data: BannerData(type: .error, detail: "Oops"))
+            BannerView(data: BannerData(type: .info, detail: "Look!"))
+            BannerView(data: BannerData(type: .success, detail: "Yeey!"))
+            BannerView(data: BannerData(type: .warning, detail: "Wait a second"))
+        }
+        .previewLayout(.sizeThatFits)
     }
 }
