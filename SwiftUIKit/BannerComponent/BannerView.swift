@@ -54,6 +54,5 @@ struct BannerView_Previews: PreviewProvider {
             BannerView(data: BannerData(type: .success, detail: "Yeey!"))
             BannerView(data: BannerData(type: .warning, detail: "Wait a second"))
         }
-        .previewLayout(.sizeThatFits)
     }
 }
