@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5544F5E2A5EF798007C9E2F /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5544F5D2A5EF798007C9E2F /* String+Ext.swift */; };
 		A579C9652A3B6EA500D0E5B1 /* SwiftUIKitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579C9642A3B6EA500D0E5B1 /* SwiftUIKitApp.swift */; };
 		A579C9672A3B6EA500D0E5B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579C9662A3B6EA500D0E5B1 /* ContentView.swift */; };
 		A579C9692A3B6EA600D0E5B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A579C9682A3B6EA600D0E5B1 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A5544F5D2A5EF798007C9E2F /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		A579C9612A3B6EA500D0E5B1 /* SwiftUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A579C9642A3B6EA500D0E5B1 /* SwiftUIKitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIKitApp.swift; sourceTree = "<group>"; };
 		A579C9662A3B6EA500D0E5B1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5544F5C2A5EF772007C9E2F /* HTMLStylingComponent */ = {
+			isa = PBXGroup;
+			children = (
+				A5544F5D2A5EF798007C9E2F /* String+Ext.swift */,
+			);
+			path = HTMLStylingComponent;
+			sourceTree = "<group>";
+		};
 		A579C9582A3B6EA500D0E5B1 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +76,7 @@
 				A579C9662A3B6EA500D0E5B1 /* ContentView.swift */,
 				A579C9682A3B6EA600D0E5B1 /* Assets.xcassets */,
 				A579C96A2A3B6EA600D0E5B1 /* SwiftUIKit.entitlements */,
+				A5544F5C2A5EF772007C9E2F /* HTMLStylingComponent */,
 				A579C9732A3B706100D0E5B1 /* BannerComponent */,
 				A579C96B2A3B6EA600D0E5B1 /* Preview Content */,
 			);
@@ -168,6 +179,7 @@
 				A579C9792A3B706100D0E5B1 /* BannerPreview.swift in Sources */,
 				A579C97B2A3B706100D0E5B1 /* BannerData.swift in Sources */,
 				A579C97C2A3B706100D0E5B1 /* BannerModifier.swift in Sources */,
+				A5544F5E2A5EF798007C9E2F /* String+Ext.swift in Sources */,
 				A579C9652A3B6EA500D0E5B1 /* SwiftUIKitApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
