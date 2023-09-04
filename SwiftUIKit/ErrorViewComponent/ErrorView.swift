@@ -52,7 +52,6 @@ struct ErrorView_Previews: PreviewProvider {
 enum previewError {
     static let title = "Something happened with your connection"
     static let message = """
-    Hey! I ran into this error: Outdated feedback options.
     Invalid response from the server. Response: <NSHTTPURLResponse: 0x600001838580> { URL: https://test.staff.bbc.com/services/graphql/low-risk } { Status Code: 500, Headers {
         "Cache-Control" =     (
             "no-store"

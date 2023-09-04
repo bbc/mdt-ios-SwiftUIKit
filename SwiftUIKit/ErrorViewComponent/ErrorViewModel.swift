@@ -53,4 +53,44 @@ class ErrorViewModel: ObservableObject {
         }
     }
     
+    func emailErrorMessage() {
+        prepareURLtoOpen("mailto:mobile.apps@bbc.co.uk", errorToDisplay: .cantWriteEmail)
+    }
+    
+    private func prepareURLtoOpen(_ baseURL: String, errorToDisplay error: BBCError) {
+        guard
+            let url = schemeURL(baseURL),
+            UIApplication.shared.canOpenURL(url)
+        else {
+            self.showErrorBanner(error: error)
+            return
+        }
+        
+        UIApplication.shared.open(url)
+    }
+    
+    private func schemeURL(_ stringURL: String) -> URL? {
+        return URL(string: stringURL)
+    }
+    
+    func showErrorBanner(error: BBCError) {
+        DispatchQueue.main.async {
+            self.bannerData = BannerData(type: .error, detail: error.errorMessage, duration: 5)
+            self.showBanner = true
+        }
+    }
 }
+
+public enum BBCError: Error {
+    case cantWriteEmail
+    
+    var errorMessage: String {
+        switch self {
+            
+        case .cantWriteEmail:
+            return "Sorry, can't open your mail app! \nTry to copy the message instead"
+        }
+        
+    }
+}
+

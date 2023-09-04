@@ -12,16 +12,29 @@ struct ErrorSheetView: View {
     @ObservedObject var errorViewModel: ErrorViewModel
     
     @Environment(\.dismiss) private var dismiss
+    @State private var isShowingConfirmationDialog: Bool = false
     
-    var copyButton: some View {
-            Button(action: {}, label: {
-                Label("Copy", systemImage: "doc.on.doc")
-                    .labelStyle(.iconOnly)
-                    .foregroundColor(.orange)
-            })
-            .onTapGesture {
-                errorViewModel.copyErrorMessage()
-            }
+    private var copyButton: some View {
+        createCopyButton()
+    }
+    
+    private var emailButton: some View {
+        createEmailButton()
+    }
+    
+    private var bugReportButton: some View {
+        createBugReportButton()
+    }
+    
+    var shareButton: some View {
+        Button(action: {}, label: {
+            Label("Share", systemImage: "square.and.arrow.up")
+                .labelStyle(.iconOnly)
+                .foregroundColor(.orange)
+        })
+        .onTapGesture {
+            isShowingConfirmationDialog = true
+        }
     }
     
     var dismissButton: some View {
@@ -48,10 +61,15 @@ struct ErrorSheetView: View {
                     Text(errorViewModel.errorTitle)
                         .fontWeight(.semibold)
                         .lineLimit(2)
-                    
                     Spacer()
-                    copyButton
+                    shareButton
                         .font(.title2)
+                        .confirmationDialog("Please report this bug", isPresented: $isShowingConfirmationDialog, titleVisibility: .hidden) {
+                            bugReportButton
+                            emailButton
+                            copyButton
+                        }
+
                     dismissButton
                         .font(.title2)
                 }
@@ -66,6 +84,30 @@ struct ErrorSheetView: View {
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarHidden(true)
         }
+    }
+    
+    private func createCopyButton() -> some View {
+        let copyButtonName: String = "Copy error description"
+        let contactCopyButton = Button(copyButtonName) {
+            errorViewModel.copyErrorMessage()
+        }
+        return contactCopyButton
+    }
+    
+    private func createEmailButton() -> some View {
+        let emailButtonName: String = "Email error to mobile.apps@bbc.co.uk"
+        let emailButton = Button(emailButtonName) {
+            errorViewModel.emailErrorMessage()
+        }
+        return emailButton
+    }
+    
+    private func createBugReportButton() -> some View {
+        let reportButtonName: String = "Report this bug 🚨"
+        let reportButton = Button(reportButtonName) {
+            print("Report about \(errorViewModel.errorTitle) send!")
+        }
+        return reportButton
     }
 }
 
