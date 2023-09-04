@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        BannerPreview()
+        List {
+            Text("First row")
+            Text("Second row")
+            ErrorView(title: previewError.title, message: previewError.message, standalone: false)
+        }
     }
 }
 
