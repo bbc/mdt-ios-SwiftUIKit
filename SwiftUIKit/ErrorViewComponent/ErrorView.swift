@@ -28,6 +28,7 @@ struct ErrorView: View {
             VStack (alignment: .leading, spacing: 2) {
                 Text(errorViewModel.errorTitle)
                     .font(errorViewModel.standalone ? .headline : .footnote)
+                    .lineLimit(2)
                 Text(errorViewModel.errorMessage)
                     .font(errorViewModel.standalone ? .subheadline : .caption)
                     .lineLimit(3)
@@ -50,7 +51,7 @@ struct ErrorView_Previews: PreviewProvider {
 }
 
 enum previewError {
-    static let title = "Something happened with your connection"
+    static let title = "Something is wrong with your connection! Please check it and try again"
     static let message = """
     Invalid response from the server. Response: <NSHTTPURLResponse: 0x600001838580> { URL: https://test.staff.bbc.com/services/graphql/low-risk } { Status Code: 500, Headers {
         "Cache-Control" =     (
