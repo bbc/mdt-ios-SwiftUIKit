@@ -16,16 +16,10 @@ class ErrorViewModel: ObservableObject {
         self.error = error
     }
     
-    convenience init(error: BBCErrorData, isBugReportAvailible: Bool) {
-        self.init(error: error)
-        self.isBugReportAvailible = isBugReportAvailible
-    }
-    
     @Published var showBanner: Bool = false
     @Published var bannerData: BannerData = BannerData.defaultData()
     @Published var isShowingErrorSheet: Bool = false
     @Published var isBugReportAvailible: Bool = true
-    
     
     lazy var errorTitle: String = {
         return error.errorTitle
@@ -58,10 +52,6 @@ class ErrorViewModel: ObservableObject {
             self.bannerData = BannerData(type: .success, detail: "Error description copied!", duration: 3)
             self.showBanner = true
         }
-    }
-    
-    func emailErrorMessage() {
-        prepareURLtoOpen("mailto:mobile.apps@bbc.co.uk", errorToDisplay: .cantWriteEmail)
     }
     
     private func prepareURLtoOpen(_ baseURL: String, errorToDisplay error: BBCError) {

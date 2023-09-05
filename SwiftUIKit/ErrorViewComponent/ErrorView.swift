@@ -38,7 +38,13 @@ struct ErrorView: View {
         .foregroundColor(.secondary)
         .listRowBackground(Color(uiColor: UIColor.systemBackground).opacity(0.5))
         .sheet(isPresented: $errorViewModel.isShowingErrorSheet) {
-            ErrorSheetView(errorViewModel: errorViewModel)
+            if #available(iOS 16.4, *) {
+                ErrorSheetView(errorViewModel: errorViewModel)
+                    .presentationDetents([.fraction(0.8), .large])
+                    .presentationBackgroundInteraction(.disabled)
+            } else {
+                ErrorSheetView(errorViewModel: errorViewModel)
+            }
         }
     }
 }
