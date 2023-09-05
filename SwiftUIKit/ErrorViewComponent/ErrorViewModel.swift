@@ -16,9 +16,16 @@ class ErrorViewModel: ObservableObject {
         self.error = error
     }
     
+    convenience init(error: BBCErrorData, isBugReportAvailible: Bool) {
+        self.init(error: error)
+        self.isBugReportAvailible = isBugReportAvailible
+    }
+    
     @Published var showBanner: Bool = false
     @Published var bannerData: BannerData = BannerData.defaultData()
     @Published var isShowingErrorSheet: Bool = false
+    @Published var isBugReportAvailible: Bool = true
+    
     
     lazy var errorTitle: String = {
         return error.errorTitle

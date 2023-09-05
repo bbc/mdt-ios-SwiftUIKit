@@ -24,57 +24,73 @@ struct ErrorSheetView: View {
         .onTapGesture {
             dismiss()
         }
-        .font(.title2)
     }
     
-    var shareButton: some View {
+    var shareButtonWithBugReport: some View {
         Button(action: {}, label: {
-            Label("Share", systemImage: "square.and.arrow.up.fill")
+            Label("Share", systemImage: "square.and.arrow.up")
                 .labelStyle(.iconOnly)
                 .foregroundColor(.orange)
         })
-        .font(.title2)
         .onTapGesture {
             isShowingConfirmationDialog = true
         }
         .confirmationDialog("Please report this bug", isPresented: $isShowingConfirmationDialog, titleVisibility: .hidden) {
-            emailButton
-            copyButton
+            bugReportButton
+            shareOrCopyOptionButtonWithoutLabels
         }
     }
     
-    private var copyButton: some View {
+    var shareButtonWithoutBugReport: some View {
+        if #available(iOS 16.0, *) {
+            return shareLinkWithLabel
+        } else {
+            return copyButtonWithLabel
+        }
+    }
+    
+    var bugReportButton: some View {
+        Button("Report this bug", action: {
+            print("Note that no report about \(errorViewModel.errorTitle) was sent!")
+        })
+    }
+    
+    var shareOrCopyOptionButtonWithoutLabels: some View {
+        if #available(iOS 16.0, *) {
+            return shareLinkWithOutLabel
+        } else {
+            return copyButtonWithoutLabel
+        }
+    }
+    
+    private var copyButtonWithoutLabel: some View {
         Button("Copy error description") {
             errorViewModel.copyErrorMessage()
         }
     }
     
-    private var emailButton: some View {
-        Button("Email error to mobile.apps@bbc.co.uk") {
-            errorViewModel.emailErrorMessage()
+    private var copyButtonWithLabel: some View {
+        Button {
+            errorViewModel.copyErrorMessage()
+        } label: {
+            Label("Copy error description", systemImage: "square.and.arrow.up")
+                .labelStyle(.iconOnly)
+                .foregroundColor(.orange)
         }
     }
     
     @available(iOS 16.0, *)
-    var shareLink: some View {
+    var shareLinkWithOutLabel: some View {
+        ShareLink("Share error description", item: errorViewModel.messageToCopy)
+    }
+    
+    @available(iOS 16.0, *)
+    var shareLinkWithLabel: some View {
         ShareLink(item: errorViewModel.messageToCopy) {
-            Label("Share", systemImage: "square.and.arrow.up")
+            Label("Share error description", systemImage: "square.and.arrow.up")
                 .labelStyle(.iconOnly)
                 .foregroundColor(.orange)
         }
-        .font(.title2)
-    }
-    
-    var bugReportButton: some View {
-        Button {
-            print("Note that no report about \(errorViewModel.errorTitle) was sent!")
-        } label: {
-            Label("Report this bug", systemImage: "ladybug.fill")
-                .labelStyle(.titleAndIcon)
-        }
-        .buttonStyle(.borderedProminent)
-        .tint(.orange)
-        .font(.headline)
     }
     
     //MARK: - View
@@ -84,14 +100,14 @@ struct ErrorSheetView: View {
             // Header
             HStack {
                 dismissButton
-                if #available(iOS 16.0, *) {
-                    shareLink
-                } else {
-                    shareButton
-                }
                 Spacer()
-                bugReportButton
+                if errorViewModel.isBugReportAvailible {
+                    shareButtonWithBugReport
+                } else {
+                    shareButtonWithoutBugReport
+                }
             }
+            .font(.title2)
             .listRowSeparator(.hidden)
             .listRowBackground(Color(uiColor: UIColor.orange).opacity(0.2))
             
@@ -123,6 +139,12 @@ struct ErrorSheetView: View {
 
 struct ErrorSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorSheetView(errorViewModel: ErrorViewModel(error: BBCErrorData(errorTitle: previewError.title, errorMessage: previewError.message, standalone: true)))
+        let error = BBCErrorData(errorTitle: previewError.title, errorMessage: previewError.message, standalone: true)
+        let modelOne = ErrorViewModel(error: error, isBugReportAvailible: true)
+        let modelTwo = ErrorViewModel(error: error, isBugReportAvailible: false)
+        
+        ErrorSheetView(errorViewModel: modelOne)
+        ErrorSheetView(errorViewModel: modelTwo)
+        
     }
 }
