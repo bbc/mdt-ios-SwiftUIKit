@@ -33,10 +33,14 @@ struct ErrorSheetView: View {
                 .labelStyle(.iconOnly)
                 .foregroundColor(.orange)
         })
+        .font(.title2)
         .onTapGesture {
             isShowingConfirmationDialog = true
         }
-        .font(.title2)
+        .confirmationDialog("Please report this bug", isPresented: $isShowingConfirmationDialog, titleVisibility: .hidden) {
+            emailButton
+            copyButton
+        }
     }
     
     private var copyButton: some View {
@@ -51,6 +55,7 @@ struct ErrorSheetView: View {
         }
     }
     
+    @available(iOS 16.0, *)
     var shareLink: some View {
         ShareLink(item: errorViewModel.messageToCopy) {
             Label("Share", systemImage: "square.and.arrow.up")
@@ -69,7 +74,7 @@ struct ErrorSheetView: View {
         }
         .buttonStyle(.borderedProminent)
         .tint(.orange)
-        .fontWeight(.semibold)
+        .font(.headline)
     }
     
     //MARK: - View
@@ -79,15 +84,13 @@ struct ErrorSheetView: View {
             // Header
             HStack {
                 dismissButton
-                shareLink
-                shareButton
-                    .confirmationDialog("Please report this bug", isPresented: $isShowingConfirmationDialog, titleVisibility: .hidden) {
-                        emailButton
-                        copyButton
-                    }
+                if #available(iOS 16.0, *) {
+                    shareLink
+                } else {
+                    shareButton
+                }
                 Spacer()
                 bugReportButton
-                    .padding(.top, 5)
             }
             .listRowSeparator(.hidden)
             .listRowBackground(Color(uiColor: UIColor.orange).opacity(0.2))
@@ -105,6 +108,8 @@ struct ErrorSheetView: View {
             }
             .listRowSeparatorTint(.orange)
             .listRowBackground(Color(uiColor: UIColor.orange).opacity(0.2))
+            .padding(.top, -5)
+            .padding(.bottom, 5)
             
             // Main text
             Text(errorViewModel.errorMessage)
