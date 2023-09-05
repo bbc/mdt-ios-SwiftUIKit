@@ -26,9 +26,11 @@ struct ErrorSheetView: View {
         createBugReportButton()
     }
     
+    
+    
     var shareButton: some View {
         Button(action: {}, label: {
-            Label("Share", systemImage: "square.and.arrow.up")
+            Label("Share", systemImage: "square.and.arrow.up.fill")
                 .labelStyle(.iconOnly)
                 .foregroundColor(.orange)
         })
@@ -54,6 +56,35 @@ struct ErrorSheetView: View {
         NavigationView {
             List {
                 HStack {
+                    
+                    dismissButton
+                        .font(.title2)
+                    
+                    ShareLink(item: errorViewModel.messageToCopy) {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                            .labelStyle(.iconOnly)
+                            .foregroundColor(.orange)
+                    }
+                    .font(.title2)
+                    
+                    shareButton
+                        .confirmationDialog("Please report this bug", isPresented: $isShowingConfirmationDialog, titleVisibility: .hidden) {
+                            emailButton
+                            copyButton
+                        }
+                        .font(.title2)
+                    
+                    Spacer()
+                    bugReportButton
+                        .buttonStyle(.borderedProminent)
+                        .tint(.orange)
+                        .padding(.top, 5)
+                        .fontWeight(.semibold)
+                }
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color(uiColor: UIColor.orange).opacity(0.2))
+                
+                HStack {
                     Image(systemName: "exclamationmark.triangle")
                         .foregroundColor(.orange)
                         .font(.title)
@@ -61,17 +92,6 @@ struct ErrorSheetView: View {
                     Text(errorViewModel.errorTitle)
                         .fontWeight(.semibold)
                         .lineLimit(2)
-                    Spacer()
-                    shareButton
-                        .font(.title2)
-                        .confirmationDialog("Please report this bug", isPresented: $isShowingConfirmationDialog, titleVisibility: .hidden) {
-                            bugReportButton
-                            emailButton
-                            copyButton
-                        }
-
-                    dismissButton
-                        .font(.title2)
                 }
                 .listRowSeparatorTint(.orange)
                 .listRowBackground(Color(uiColor: UIColor.orange).opacity(0.2))
@@ -103,7 +123,7 @@ struct ErrorSheetView: View {
     }
     
     private func createBugReportButton() -> some View {
-        let reportButtonName: String = "Report this bug 🚨"
+        let reportButtonName: String = "Report this bug"
         let reportButton = Button(reportButtonName) {
             print("Report about \(errorViewModel.errorTitle) send!")
         }
