@@ -17,8 +17,8 @@ struct ErrorSheetView: View {
     //MARK: - Buttons
     var dismissButton: some View {
         Button(action: {}, label: {
-            Label("Dismiss", systemImage: "arrow.backward")
-                .labelStyle(.iconOnly)
+            Label("Dismiss", systemImage: "xmark")
+                .labelStyle(.titleAndIcon)
                 .foregroundColor(.orange)
         })
         .onTapGesture {
@@ -84,8 +84,9 @@ struct ErrorSheetView: View {
                 dismissButton
                 Spacer()
                 shareButton
+                    .font(.title2)
             }
-            .font(.title2)
+            .padding(.bottom, -10)
             .listRowSeparator(.hidden)
             .listRowBackground(Color(uiColor: UIColor.orange).opacity(0.2))
             
@@ -100,6 +101,7 @@ struct ErrorSheetView: View {
                     .lineLimit(2)
                     .minimumScaleFactor(0.7)
             }
+            .padding(.top, -2)
             .listRowSeparatorTint(.orange)
             .listRowBackground(Color(uiColor: UIColor.orange).opacity(0.2))
             

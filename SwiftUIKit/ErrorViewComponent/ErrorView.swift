@@ -40,8 +40,9 @@ struct ErrorView: View {
         .sheet(isPresented: $errorViewModel.isShowingErrorSheet) {
             if #available(iOS 16.4, *) {
                 ErrorSheetView(errorViewModel: errorViewModel)
-                    .presentationDetents([.fraction(0.8), .large])
+                    .presentationDetents([.medium, .fraction(0.8)])
                     .presentationBackgroundInteraction(.disabled)
+                    .presentationContentInteraction(.resizes)
             } else {
                 ErrorSheetView(errorViewModel: errorViewModel)
             }
