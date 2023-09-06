@@ -10,13 +10,18 @@ import SwiftUI
 struct NotificationView: View {
     
     @ObservedObject var notificationViewModel: NotificationViewModel
-    
-    @State private var canBeExpanded = false
-    
+        
     init(type: NotificationData.NotificationType, title: String, message: String, standalone: Bool) {
         let notification = NotificationData(type: type, title: title, message: message, standalone: standalone)
-        let notificationVM = NotificationViewModel(notification: notification)
-        self.notificationViewModel = notificationVM
+        self.notificationViewModel = NotificationViewModel(notification: notification)
+    }
+    
+    private var titleFont: Font {
+        notificationViewModel.standalone ? .headline : .footnote
+    }
+    
+    private var messageFont: Font {
+        notificationViewModel.standalone ? .subheadline : .caption
     }
 
     var body: some View {
@@ -28,19 +33,19 @@ struct NotificationView: View {
                 .foregroundColor(notificationViewModel.notificationType.tintColor)
             VStack (alignment: .leading, spacing: 2) {
                 Text(notificationViewModel.notificationTitle)
-                    .font(notificationViewModel.standalone ? .headline : .footnote)
+                    .font(titleFont)
                     .lineLimit(2)
                 Text(notificationViewModel.notificationMessage)
-                    .font(notificationViewModel.standalone ? .subheadline : .caption)
+                    .font(messageFont)
                     .lineLimit(3)
                     .background(GeometryReader { geometry in
                         Color.clear.onAppear {
-                            self.canNotificationBeExtanded(geometry)
+                            notificationViewModel.canNotificationBeExtanded(geometry)
                         }
                     })
             }
         }
-        .allowsHitTesting(canBeExpanded)
+        .allowsHitTesting(notificationViewModel.canBeExpanded)
         .onTapGesture {
                 notificationViewModel.isShowingNotificationSheet = true
         }
@@ -57,23 +62,6 @@ struct NotificationView: View {
             }
         }
     }
-    
-    private func canNotificationBeExtanded(_ geometry: GeometryProxy) {
-        let total = self.notificationViewModel.notificationMessage.boundingRect(
-            with: CGSize(
-                width: geometry.size.width,
-                height: .greatestFiniteMagnitude
-            ),
-            options: .usesLineFragmentOrigin,
-            attributes: [.font: notificationViewModel.standalone ? UIFont.preferredFont(forTextStyle: .subheadline) : UIFont.preferredFont(forTextStyle: .caption1)],
-            context: nil
-        )
-
-        if total.size.height > geometry.size.height {
-            self.canBeExpanded = true
-        }
-    }
-    
 }
 
 

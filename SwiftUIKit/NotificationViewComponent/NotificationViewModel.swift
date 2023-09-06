@@ -20,6 +20,7 @@ class NotificationViewModel: ObservableObject {
     @Published var bannerData: BannerData = BannerData.defaultData()
     @Published var isShowingNotificationSheet: Bool = false
     @Published var isFeedbackAvailible: Bool = true
+    @Published var canBeExpanded: Bool = false
     
     lazy var notificationTitle: String = {
         return notification.title
@@ -80,6 +81,22 @@ class NotificationViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.bannerData = BannerData(type: .error, detail: error.errorMessage, duration: 5)
             self.showBanner = true
+        }
+    }
+    
+    func canNotificationBeExtanded(_ geometry: GeometryProxy) {
+        let total = self.notificationMessage.boundingRect(
+            with: CGSize(
+                width: geometry.size.width,
+                height: .greatestFiniteMagnitude
+            ),
+            options: .usesLineFragmentOrigin,
+            attributes: [.font: standalone ? UIFont.preferredFont(forTextStyle: .subheadline) : UIFont.preferredFont(forTextStyle: .caption1)],
+            context: nil
+        )
+
+        if total.size.height > geometry.size.height {
+            self.canBeExpanded = true
         }
     }
 }
