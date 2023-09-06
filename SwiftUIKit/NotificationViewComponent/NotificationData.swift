@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NotificationData {
+    
     var type: NotificationType
     var title: String
     var message: String
@@ -26,7 +27,6 @@ struct NotificationData {
         
         var tintColor: Color {
             switch self {
-                
             case .info:
                 return .accentColor
             case .success:
@@ -40,7 +40,6 @@ struct NotificationData {
         
         var backgroundColor: UIColor {
             switch self {
-                
             case .info:
                 return UIColor.tintColor
             case .success:
@@ -55,18 +54,24 @@ struct NotificationData {
         var iconImage: Image {
             switch self {
             case .info:
-                return Image(systemName: "info.circle")
+                return Image(systemName: BBCNotificationTypeHelper.infoIcon)
             case .success:
-                return Image(systemName: "checkmark.circle")
+                return Image(systemName: BBCNotificationTypeHelper.successIcon)
             case .warning:
-                return Image(systemName: "exclamationmark.triangle")
+                return Image(systemName: BBCNotificationTypeHelper.warningIcon)
             case .error:
-                return Image(systemName: "xmark.circle")
+                return Image(systemName: BBCNotificationTypeHelper.errorIcon)
             }
         }
         
         var typeName: String {
-            return String(describing: self)
+            switch self {
+            case .info, .success:
+                return BBCNotificationTypeHelper.positiveTypeDescription
+            case .warning , .error:
+                return String(describing: self)
+            }
         }
+        
     }
 }

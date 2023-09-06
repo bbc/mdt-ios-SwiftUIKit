@@ -33,9 +33,13 @@ class NotificationViewModel: ObservableObject {
         return notification.standalone
     }()
     
+    lazy var notificationType: NotificationData.NotificationType = {
+        return notification.type
+    }()
+    
     //TODO: rewrite
     lazy var messageToCopy: String = {
-        return "Hey! I ran into this error: \(notificationTitle). \n\(notificationMessage)"
+        return "\(BBCNotificationPhrases.messageToCopyStart) \(notificationType.typeName): \(notificationTitle). \n\(notificationMessage)"
     }()
 
     func copyNotificationMessage() {
@@ -51,7 +55,7 @@ class NotificationViewModel: ObservableObject {
     
     private func copiedSuccessfully() {
         DispatchQueue.main.async {
-            self.bannerData = BannerData(type: .success, detail: "Copied to clipboard!", duration: 3)
+            self.bannerData = BannerData(type: .success, detail: BBCNotificationPhrases.copiedToClipboard, duration: 3)
             self.showBanner = true
         }
     }
@@ -79,17 +83,3 @@ class NotificationViewModel: ObservableObject {
         }
     }
 }
-
-public enum NotificationError: Error {
-    case cantWriteEmail
-    
-    var errorMessage: String {
-        switch self {
-            
-        case .cantWriteEmail:
-            return "Sorry, can't open your mail app! \nTry to copy the message instead"
-        }
-        
-    }
-}
-

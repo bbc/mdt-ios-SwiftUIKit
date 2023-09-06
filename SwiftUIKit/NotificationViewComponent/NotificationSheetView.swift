@@ -17,9 +17,9 @@ struct NotificationSheetView: View {
     //MARK: - Buttons
     var dismissButton: some View {
         Button(action: {}, label: {
-            Label("Dismiss", systemImage: "xmark")
+            Label(BBCNotificationButtons.dismissName, systemImage: BBCNotificationButtons.dismissImage)
                 .labelStyle(.titleAndIcon)
-                .foregroundColor(notificationViewModel.notification.type.tintColor)
+                .foregroundColor(notificationViewModel.notificationType.tintColor)
         })
         .onTapGesture {
             dismiss()
@@ -28,14 +28,14 @@ struct NotificationSheetView: View {
     
     var shareButton: some View {
         Button(action: {}, label: {
-            Label("Share", systemImage: "square.and.arrow.up")
+            Label(BBCNotificationButtons.shareName, systemImage: BBCNotificationButtons.shareImage)
                 .labelStyle(.iconOnly)
-                .foregroundColor(notificationViewModel.notification.type.tintColor)
+                .foregroundColor(notificationViewModel.notificationType.tintColor)
         })
         .onTapGesture {
             isShowingConfirmationDialog = true
         }
-        .confirmationDialog("Please share your feedback", isPresented: $isShowingConfirmationDialog, titleVisibility: .hidden) {
+        .confirmationDialog(BBCNotificationButtons.comfirmationDialogTitle, isPresented: $isShowingConfirmationDialog, titleVisibility: .hidden) {
             sendFeedbackButton
             shareOrCopyOption
         }
@@ -44,7 +44,7 @@ struct NotificationSheetView: View {
     var sendFeedbackButton: AnyView {
         if notificationViewModel.isFeedbackAvailible {
             return AnyView(
-                Button("Share your feedback",
+                Button(BBCNotificationButtons.sendFeedbackButtonTitle,
                        action: {
                            //TODO: Add functionality
                            print("Note that no report about \(notificationViewModel.notificationTitle) was sent!")
@@ -64,7 +64,7 @@ struct NotificationSheetView: View {
     }
     
     var copyButton: some View {
-        Button("Copy to clipboard") {
+        Button(BBCNotificationButtons.copyButtonTitle) {
             notificationViewModel.copyNotificationMessage()
         }
     }
@@ -72,7 +72,7 @@ struct NotificationSheetView: View {
     //TODO: make different title based on tupe of notification
     @available(iOS 16.0, *)
     var shareLink: some View {
-        ShareLink("Share \(notificationViewModel.notification.type.typeName) description", item: notificationViewModel.messageToCopy)
+        ShareLink(String(BBCNotificationButtons.shareLinkTitle + notificationViewModel.notificationType.typeName), item: notificationViewModel.messageToCopy)
     }
     
     
@@ -89,22 +89,22 @@ struct NotificationSheetView: View {
             }
             .padding(.bottom, -10)
             .listRowSeparator(.hidden)
-            .listRowBackground(Color(uiColor: notificationViewModel.notification.type.backgroundColor).opacity(0.2))
+            .listRowBackground(Color(uiColor: notificationViewModel.notificationType.backgroundColor).opacity(0.2))
             
             // Title
             HStack {
-                notificationViewModel.notification.type.iconImage
+                notificationViewModel.notificationType.iconImage
                     .font(.title)
                     .padding(.trailing, 5)
-                    .foregroundColor(notificationViewModel.notification.type.tintColor)
+                    .foregroundColor(notificationViewModel.notificationType.tintColor)
                 Text(notificationViewModel.notificationTitle)
                     .fontWeight(.semibold)
                     .lineLimit(3)
                     .minimumScaleFactor(0.7)
             }
             .padding(.top, -2)
-            .listRowSeparatorTint(notificationViewModel.notification.type.tintColor)
-            .listRowBackground(Color(uiColor: notificationViewModel.notification.type.backgroundColor).opacity(0.2))
+            .listRowSeparatorTint(notificationViewModel.notificationType.tintColor)
+            .listRowBackground(Color(uiColor: notificationViewModel.notificationType.backgroundColor).opacity(0.2))
             
             // Main text
             Text(notificationViewModel.notificationMessage)
@@ -118,7 +118,7 @@ struct NotificationSheetView: View {
 
 struct NotificationSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        let notification = NotificationData(type: .warning, title: previewError.title, message: previewError.message, standalone: true)
+        let notification = NotificationData(type: .warning, title: testNotificationsError.title, message: testNotificationsError.message, standalone: true)
         let model = NotificationViewModel(notification: notification)
         NotificationSheetView(notificationViewModel: model)
     }
