@@ -8,13 +8,13 @@
 import Foundation
 
 struct NotificationData {
-    var errorTitle: String = ""
-    var errorMessage: String = ""
+    var title: String = ""
+    var message: String = ""
     var standalone: Bool = false
     
-    init(errorTitle: String, errorMessage: String, standalone: Bool) {
-        self.errorTitle = errorTitle
-        self.errorMessage = errorMessage
+    init(title: String, message: String, standalone: Bool) {
+        self.title = title
+        self.message = message
         self.standalone = standalone
     }
 }

@@ -9,11 +9,11 @@ import SwiftUI
 
 struct NotificationView: View {
     
-    @ObservedObject var errorViewModel: NotificationViewModel
+    @ObservedObject var notificationViewModel: NotificationViewModel
     
     init(title: String, message: String, standalone: Bool) {
-        let errorVM = NotificationViewModel(error: NotificationData(errorTitle: title, errorMessage: message, standalone: standalone))
-        self.errorViewModel = errorVM
+        let notificationVM = NotificationViewModel(notification: NotificationData(title: title, message: message, standalone: standalone))
+        self.notificationViewModel = notificationVM
     }
 
     var body: some View {
@@ -24,25 +24,25 @@ struct NotificationView: View {
                 .padding(.leading)
                 .foregroundColor(.orange)
             VStack (alignment: .leading, spacing: 2) {
-                Text(errorViewModel.errorTitle)
-                    .font(errorViewModel.standalone ? .headline : .footnote)
+                Text(notificationViewModel.notificationTitle)
+                    .font(notificationViewModel.standalone ? .headline : .footnote)
                     .lineLimit(2)
-                Text(errorViewModel.errorMessage)
-                    .font(errorViewModel.standalone ? .subheadline : .caption)
+                Text(notificationViewModel.notificationMessage)
+                    .font(notificationViewModel.standalone ? .subheadline : .caption)
                     .lineLimit(3)
             }
         }
-        .onTapGesture { errorViewModel.isShowingErrorSheet = true }
+        .onTapGesture { notificationViewModel.isShowingNotificationSheet = true }
         .foregroundColor(.secondary)
         .listRowBackground(Color(uiColor: UIColor.systemBackground).opacity(0.5))
-        .sheet(isPresented: $errorViewModel.isShowingErrorSheet) {
+        .sheet(isPresented: $notificationViewModel.isShowingNotificationSheet) {
             if #available(iOS 16.4, *) {
-                NotificationSheetView(errorViewModel: errorViewModel)
+                NotificationSheetView(notificationViewModel: notificationViewModel)
                     .presentationDetents([.medium, .fraction(0.8)])
                     .presentationBackgroundInteraction(.disabled)
                     .presentationContentInteraction(.resizes)
             } else {
-                NotificationSheetView(errorViewModel: errorViewModel)
+                NotificationSheetView(notificationViewModel: notificationViewModel)
             }
         }
     }

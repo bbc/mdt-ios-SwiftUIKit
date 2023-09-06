@@ -10,34 +10,35 @@ import SwiftUI
 
 class NotificationViewModel: ObservableObject {
     
-    var error: NotificationData
+    var notification: NotificationData
     
-    init(error: NotificationData) {
-        self.error = error
+    init(notification: NotificationData) {
+        self.notification = notification
     }
     
     @Published var showBanner: Bool = false
     @Published var bannerData: BannerData = BannerData.defaultData()
-    @Published var isShowingErrorSheet: Bool = false
+    @Published var isShowingNotificationSheet: Bool = false
     @Published var isBugReportAvailible: Bool = true
     
-    lazy var errorTitle: String = {
-        return error.errorTitle
+    lazy var notificationTitle: String = {
+        return notification.title
     }()
     
-    lazy var errorMessage: String = {
-        return error.errorMessage
+    lazy var notificationMessage: String = {
+        return notification.message
     }()
     
     lazy var standalone: Bool = {
-        return error.standalone
+        return notification.standalone
     }()
     
+    //TODO: rewrite
     lazy var messageToCopy: String = {
-        return "Hey! I ran into this error: \(errorTitle). \n\(errorMessage)"
+        return "Hey! I ran into this error: \(notificationTitle). \n\(notificationMessage)"
     }()
 
-    func copyErrorMessage() {
+    func copyNotificationMessage() {
         copyToClipboard(item: messageToCopy)
         copiedSuccessfully()
     }
@@ -47,9 +48,10 @@ class NotificationViewModel: ObservableObject {
         pasteboard.string = item
     }
     
+    
     private func copiedSuccessfully() {
         DispatchQueue.main.async {
-            self.bannerData = BannerData(type: .success, detail: "Error description copied!", duration: 3)
+            self.bannerData = BannerData(type: .success, detail: "Copied to clipboard!", duration: 3)
             self.showBanner = true
         }
     }

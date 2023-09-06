@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NotificationSheetView: View {
     
-    @ObservedObject var errorViewModel: NotificationViewModel
+    @ObservedObject var notificationViewModel: NotificationViewModel
     
     @Environment(\.dismiss) private var dismiss
     @State private var isShowingConfirmationDialog: Bool = false
@@ -42,12 +42,12 @@ struct NotificationSheetView: View {
     }
     
     var bugReportButton: AnyView {
-        if errorViewModel.isBugReportAvailible {
+        if notificationViewModel.isBugReportAvailible {
             return AnyView(
                 Button("Report this bug",
                        action: {
                            //TODO: Add functionality
-                           print("Note that no report about \(errorViewModel.errorTitle) was sent!")
+                           print("Note that no report about \(notificationViewModel.notificationTitle) was sent!")
                        })
             )
         } else {
@@ -64,14 +64,15 @@ struct NotificationSheetView: View {
     }
     
     var copyButton: some View {
-        Button("Copy error description") {
-            errorViewModel.copyErrorMessage()
+        Button("Copy to clipboard") {
+            notificationViewModel.copyNotificationMessage()
         }
     }
     
+    //TODO: make different title based on tupe of notification
     @available(iOS 16.0, *)
     var shareLink: some View {
-        ShareLink("Share error description", item: errorViewModel.messageToCopy)
+        ShareLink("Share error description", item: notificationViewModel.messageToCopy)
     }
     
     
@@ -96,7 +97,7 @@ struct NotificationSheetView: View {
                     .font(.title)
                     .padding(.trailing, 5)
                     .foregroundColor(.orange)
-                Text(errorViewModel.errorTitle)
+                Text(notificationViewModel.notificationTitle)
                     .fontWeight(.semibold)
                     .lineLimit(3)
                     .minimumScaleFactor(0.7)
@@ -106,19 +107,19 @@ struct NotificationSheetView: View {
             .listRowBackground(Color(uiColor: UIColor.orange).opacity(0.2))
             
             // Main text
-            Text(errorViewModel.errorMessage)
+            Text(notificationViewModel.notificationMessage)
                 .font(.caption)
                 .listRowSeparator(.hidden)
         }
-        .banner(data: $errorViewModel.bannerData, showBanner: $errorViewModel.showBanner)
+        .banner(data: $notificationViewModel.bannerData, showBanner: $notificationViewModel.showBanner)
     }
 }
 
 
 struct NotificationSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        let error = NotificationData(errorTitle: previewError.title, errorMessage: previewError.message, standalone: true)
-        let model = NotificationViewModel(error: error)
-        NotificationSheetView(errorViewModel: model)
+        let notification = NotificationData(title: previewError.title, message: previewError.message, standalone: true)
+        let model = NotificationViewModel(notification: notification)
+        NotificationSheetView(notificationViewModel: model)
     }
 }
