@@ -10,7 +10,7 @@ import SwiftUI
 
 class NotificationViewModel: ObservableObject {
     
-    var notification: NotificationData
+    private var notification: NotificationData
     
     init(notification: NotificationData) {
         self.notification = notification
@@ -38,7 +38,6 @@ class NotificationViewModel: ObservableObject {
         return notification.type
     }()
     
-    //TODO: rewrite
     lazy var messageToCopy: String = {
         return "\(BBCNotificationPhrases.messageToCopyStart) \(notificationType.typeName): \(notificationTitle). \n\(notificationMessage)"
     }()
@@ -78,8 +77,9 @@ class NotificationViewModel: ObservableObject {
     }
     
     func showErrorBanner(error: NotificationError) {
+        //TODO: check with G how to add weak self here
         DispatchQueue.main.async {
-            self.bannerData = BannerData(type: .error, detail: error.errorMessage, duration: 5)
+            self.bannerData = BannerData(type: .error, detail: error.localizedDescription, duration: 5)
             self.showBanner = true
         }
     }

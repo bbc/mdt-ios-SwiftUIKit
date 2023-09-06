@@ -10,7 +10,7 @@ import Foundation
 public enum NotificationError: Error {
     case cantWriteEmail
     
-    var errorMessage: String {
+    var localizedDescription: String {
         switch self {
             
         case .cantWriteEmail:
