@@ -1,5 +1,5 @@
 //
-//  ErrorView.swift
+//  NotificationView.swift
 //  SwiftUIKit
 //
 //  Created by Maria Kharybina on 04/09/2023.
@@ -7,14 +7,12 @@
 
 import SwiftUI
 
-import SwiftUI
-
-struct ErrorView: View {
+struct NotificationView: View {
     
-    @ObservedObject var errorViewModel: ErrorViewModel
+    @ObservedObject var errorViewModel: NotificationViewModel
     
     init(title: String, message: String, standalone: Bool) {
-        let errorVM = ErrorViewModel(error: BBCErrorData(errorTitle: title, errorMessage: message, standalone: standalone))
+        let errorVM = NotificationViewModel(error: NotificationData(errorTitle: title, errorMessage: message, standalone: standalone))
         self.errorViewModel = errorVM
     }
 
@@ -39,21 +37,21 @@ struct ErrorView: View {
         .listRowBackground(Color(uiColor: UIColor.systemBackground).opacity(0.5))
         .sheet(isPresented: $errorViewModel.isShowingErrorSheet) {
             if #available(iOS 16.4, *) {
-                ErrorSheetView(errorViewModel: errorViewModel)
+                NotificationSheetView(errorViewModel: errorViewModel)
                     .presentationDetents([.medium, .fraction(0.8)])
                     .presentationBackgroundInteraction(.disabled)
                     .presentationContentInteraction(.resizes)
             } else {
-                ErrorSheetView(errorViewModel: errorViewModel)
+                NotificationSheetView(errorViewModel: errorViewModel)
             }
         }
     }
 }
 
 
-struct ErrorView_Previews: PreviewProvider {
+struct NotificationView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView(title: previewError.title, message: previewError.message, standalone: true)
+        NotificationView(title: previewError.title, message: previewError.message, standalone: true)
     }
 }
 

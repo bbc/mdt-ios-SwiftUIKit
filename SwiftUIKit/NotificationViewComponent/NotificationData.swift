@@ -1,5 +1,5 @@
 //
-//  BBCErrorData.swift
+//  NotificationData.swift
 //  SwiftUIKit
 //
 //  Created by Maria Kharybina on 04/09/2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BBCErrorData {
+struct NotificationData {
     var errorTitle: String = ""
     var errorMessage: String = ""
     var standalone: Bool = false

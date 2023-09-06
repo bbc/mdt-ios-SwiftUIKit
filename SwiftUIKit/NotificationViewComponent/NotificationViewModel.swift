@@ -1,5 +1,5 @@
 //
-//  ErrorViewModel.swift
+//  NotificationViewModel.swift
 //  SwiftUIKit
 //
 //  Created by Maria Kharybina on 04/09/2023.
@@ -8,11 +8,11 @@
 import Foundation
 import SwiftUI
 
-class ErrorViewModel: ObservableObject {
+class NotificationViewModel: ObservableObject {
     
-    var error: BBCErrorData
+    var error: NotificationData
     
-    init(error: BBCErrorData) {
+    init(error: NotificationData) {
         self.error = error
     }
     
@@ -54,7 +54,7 @@ class ErrorViewModel: ObservableObject {
         }
     }
     
-    private func prepareURLtoOpen(_ baseURL: String, errorToDisplay error: BBCError) {
+    private func prepareURLtoOpen(_ baseURL: String, errorToDisplay error: NotificationError) {
         guard
             let url = schemeURL(baseURL),
             UIApplication.shared.canOpenURL(url)
@@ -70,7 +70,7 @@ class ErrorViewModel: ObservableObject {
         return URL(string: stringURL)
     }
     
-    func showErrorBanner(error: BBCError) {
+    func showErrorBanner(error: NotificationError) {
         DispatchQueue.main.async {
             self.bannerData = BannerData(type: .error, detail: error.errorMessage, duration: 5)
             self.showBanner = true
@@ -78,7 +78,7 @@ class ErrorViewModel: ObservableObject {
     }
 }
 
-public enum BBCError: Error {
+public enum NotificationError: Error {
     case cantWriteEmail
     
     var errorMessage: String {

@@ -1,5 +1,5 @@
 //
-//  ErrorSheetView.swift
+//  NotificationSheetView.swift
 //  SwiftUIKit
 //
 //  Created by Maria Kharybina on 04/09/2023.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ErrorSheetView: View {
+struct NotificationSheetView: View {
     
-    @ObservedObject var errorViewModel: ErrorViewModel
+    @ObservedObject var errorViewModel: NotificationViewModel
     
     @Environment(\.dismiss) private var dismiss
     @State private var isShowingConfirmationDialog: Bool = false
@@ -98,7 +98,7 @@ struct ErrorSheetView: View {
                     .foregroundColor(.orange)
                 Text(errorViewModel.errorTitle)
                     .fontWeight(.semibold)
-                    .lineLimit(2)
+                    .lineLimit(3)
                     .minimumScaleFactor(0.7)
             }
             .padding(.top, -2)
@@ -115,10 +115,10 @@ struct ErrorSheetView: View {
 }
 
 
-struct ErrorSheetView_Previews: PreviewProvider {
+struct NotificationSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        let error = BBCErrorData(errorTitle: previewError.title, errorMessage: previewError.message, standalone: true)
-        let model = ErrorViewModel(error: error)
-        ErrorSheetView(errorViewModel: model)
+        let error = NotificationData(errorTitle: previewError.title, errorMessage: previewError.message, standalone: true)
+        let model = NotificationViewModel(error: error)
+        NotificationSheetView(errorViewModel: model)
     }
 }
