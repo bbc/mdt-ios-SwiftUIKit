@@ -19,7 +19,7 @@ struct NotificationSheetView: View {
         Button(action: {}, label: {
             Label("Dismiss", systemImage: "xmark")
                 .labelStyle(.titleAndIcon)
-                .foregroundColor(.orange)
+                .foregroundColor(notificationViewModel.notification.type.tintColor)
         })
         .onTapGesture {
             dismiss()
@@ -30,21 +30,21 @@ struct NotificationSheetView: View {
         Button(action: {}, label: {
             Label("Share", systemImage: "square.and.arrow.up")
                 .labelStyle(.iconOnly)
-                .foregroundColor(.orange)
+                .foregroundColor(notificationViewModel.notification.type.tintColor)
         })
         .onTapGesture {
             isShowingConfirmationDialog = true
         }
-        .confirmationDialog("Please report this bug", isPresented: $isShowingConfirmationDialog, titleVisibility: .hidden) {
-            bugReportButton
+        .confirmationDialog("Please share your feedback", isPresented: $isShowingConfirmationDialog, titleVisibility: .hidden) {
+            sendFeedbackButton
             shareOrCopyOption
         }
     }
     
-    var bugReportButton: AnyView {
-        if notificationViewModel.isBugReportAvailible {
+    var sendFeedbackButton: AnyView {
+        if notificationViewModel.isFeedbackAvailible {
             return AnyView(
-                Button("Report this bug",
+                Button("Share your feedback",
                        action: {
                            //TODO: Add functionality
                            print("Note that no report about \(notificationViewModel.notificationTitle) was sent!")
@@ -72,7 +72,7 @@ struct NotificationSheetView: View {
     //TODO: make different title based on tupe of notification
     @available(iOS 16.0, *)
     var shareLink: some View {
-        ShareLink("Share error description", item: notificationViewModel.messageToCopy)
+        ShareLink("Share \(notificationViewModel.notification.type.typeName) description", item: notificationViewModel.messageToCopy)
     }
     
     
@@ -89,22 +89,22 @@ struct NotificationSheetView: View {
             }
             .padding(.bottom, -10)
             .listRowSeparator(.hidden)
-            .listRowBackground(Color(uiColor: UIColor.orange).opacity(0.2))
+            .listRowBackground(Color(uiColor: notificationViewModel.notification.type.backgroundColor).opacity(0.2))
             
             // Title
             HStack {
-                Image(systemName: "exclamationmark.triangle")
+                notificationViewModel.notification.type.iconImage
                     .font(.title)
                     .padding(.trailing, 5)
-                    .foregroundColor(.orange)
+                    .foregroundColor(notificationViewModel.notification.type.tintColor)
                 Text(notificationViewModel.notificationTitle)
                     .fontWeight(.semibold)
                     .lineLimit(3)
                     .minimumScaleFactor(0.7)
             }
             .padding(.top, -2)
-            .listRowSeparatorTint(.orange)
-            .listRowBackground(Color(uiColor: UIColor.orange).opacity(0.2))
+            .listRowSeparatorTint(notificationViewModel.notification.type.tintColor)
+            .listRowBackground(Color(uiColor: notificationViewModel.notification.type.backgroundColor).opacity(0.2))
             
             // Main text
             Text(notificationViewModel.notificationMessage)

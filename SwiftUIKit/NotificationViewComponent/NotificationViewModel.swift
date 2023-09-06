@@ -19,7 +19,7 @@ class NotificationViewModel: ObservableObject {
     @Published var showBanner: Bool = false
     @Published var bannerData: BannerData = BannerData.defaultData()
     @Published var isShowingNotificationSheet: Bool = false
-    @Published var isBugReportAvailible: Bool = true
+    @Published var isFeedbackAvailible: Bool = true
     
     lazy var notificationTitle: String = {
         return notification.title

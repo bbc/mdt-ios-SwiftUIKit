@@ -38,6 +38,20 @@ struct NotificationData {
             }
         }
         
+        var backgroundColor: UIColor {
+            switch self {
+                
+            case .info:
+                return UIColor.tintColor
+            case .success:
+                return UIColor.green
+            case .warning:
+                return UIColor.orange
+            case .error:
+                return UIColor.red
+            }
+        }
+        
         var iconImage: Image {
             switch self {
             case .info:
