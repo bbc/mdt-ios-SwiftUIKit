@@ -35,6 +35,28 @@ public enum BBCNotificationTypeHelper {
     static let positiveTypeDescription = "message"
 }
 
+public enum testNotification {
+    case info
+    case success
+    case warning
+    case error
+    
+    var data: NotificationData {
+        switch self {
+        case .info:
+            return NotificationData(type: .info, title: "Info Notification - no need to do anything", message: "This is an information notification message. It provides additional details to the user.", standalone: true)
+        case .success:
+            return NotificationData(type: .success, title: "Success Notification", message: "Congratulations! The operation was successful. Your request has been processed and completed without any issues. We appreciate your patience and cooperation. If you have any further questions or need assistance, please feel free to reach out to our support team.", standalone: false)
+
+        case .warning:
+            return NotificationData(type: .warning, title: "Warning Notification - please share it with our team", message: testNotificationsError.message, standalone: true)
+        case .error:
+            return NotificationData(type: .error, title: "Error Notification - report this bug!", message: "An error occurred while processing your request. Please try again later.", standalone: false)
+        }
+    }
+    
+}
+
 public enum testNotificationsError {
     static let title = "Something is wrong with your connection! Please check it and try again"
     static let message = """
