@@ -11,6 +11,8 @@ struct NotificationView: View {
     
     @ObservedObject var notificationViewModel: NotificationViewModel
     
+    @State private var canBeExpanded = false
+    
     init(type: NotificationData.NotificationType, title: String, message: String, standalone: Bool) {
         let notification = NotificationData(type: type, title: title, message: message, standalone: standalone)
         let notificationVM = NotificationViewModel(notification: notification)
@@ -31,9 +33,17 @@ struct NotificationView: View {
                 Text(notificationViewModel.notificationMessage)
                     .font(notificationViewModel.standalone ? .subheadline : .caption)
                     .lineLimit(3)
+                    .background(GeometryReader { geometry in
+                        Color.clear.onAppear {
+                            self.canNotificationBeExtanded(geometry)
+                        }
+                    })
             }
         }
-        .onTapGesture { notificationViewModel.isShowingNotificationSheet = true }
+        .allowsHitTesting(canBeExpanded)
+        .onTapGesture {
+                notificationViewModel.isShowingNotificationSheet = true
+        }
         .foregroundColor(.secondary)
         .listRowBackground(Color(uiColor: UIColor.systemBackground).opacity(0.5))
         .sheet(isPresented: $notificationViewModel.isShowingNotificationSheet) {
@@ -47,11 +57,28 @@ struct NotificationView: View {
             }
         }
     }
+    
+    private func canNotificationBeExtanded(_ geometry: GeometryProxy) {
+        let total = self.notificationViewModel.notificationMessage.boundingRect(
+            with: CGSize(
+                width: geometry.size.width,
+                height: .greatestFiniteMagnitude
+            ),
+            options: .usesLineFragmentOrigin,
+            attributes: [.font: notificationViewModel.standalone ? UIFont.preferredFont(forTextStyle: .subheadline) : UIFont.preferredFont(forTextStyle: .caption1)],
+            context: nil
+        )
+
+        if total.size.height > geometry.size.height {
+            self.canBeExpanded = true
+        }
+    }
+    
 }
 
 
 struct NotificationView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationView(type: .error, title: testNotificationsError.title, message: testNotificationsError.message, standalone: true)
+        NotificationView(type: .error, title: testNotificationsError.title, message: "Please check your connection to internet", standalone: true)
     }
 }
