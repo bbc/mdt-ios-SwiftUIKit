@@ -12,7 +12,7 @@ struct ContentView: View {
         List {
             Text("First row")
             Text("Second row")
-            NotificationView(title: previewError.title, message: previewError.message, standalone: false)
+            NotificationView(type: .warning, title: previewError.title, message: previewError.message, standalone: false)
         }
     }
 }

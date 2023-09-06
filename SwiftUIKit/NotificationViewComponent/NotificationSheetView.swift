@@ -118,7 +118,7 @@ struct NotificationSheetView: View {
 
 struct NotificationSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        let notification = NotificationData(title: previewError.title, message: previewError.message, standalone: true)
+        let notification = NotificationData(type: .warning, title: previewError.title, message: previewError.message, standalone: true)
         let model = NotificationViewModel(notification: notification)
         NotificationSheetView(notificationViewModel: model)
     }

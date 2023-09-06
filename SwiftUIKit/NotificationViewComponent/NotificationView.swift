@@ -11,8 +11,9 @@ struct NotificationView: View {
     
     @ObservedObject var notificationViewModel: NotificationViewModel
     
-    init(title: String, message: String, standalone: Bool) {
-        let notificationVM = NotificationViewModel(notification: NotificationData(title: title, message: message, standalone: standalone))
+    init(type: NotificationData.NotificationType, title: String, message: String, standalone: Bool) {
+        let notification = NotificationData(type: type, title: title, message: message, standalone: standalone)
+        let notificationVM = NotificationViewModel(notification: notification)
         self.notificationViewModel = notificationVM
     }
 
@@ -51,7 +52,7 @@ struct NotificationView: View {
 
 struct NotificationView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationView(title: previewError.title, message: previewError.message, standalone: true)
+        NotificationView(type: .warning, title: previewError.title, message: previewError.message, standalone: true)
     }
 }
 
