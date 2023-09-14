@@ -16,10 +16,6 @@ struct NotificationView: View {
         self.notificationViewModel = NotificationViewModel(notification: notification)
     }
     
-    init(notificationData: NotificationData) {
-        self.notificationViewModel = NotificationViewModel(notification: notificationData)
-    }
-    
     private var titleFont: Font {
         notificationViewModel.standalone ? .headline : .footnote
     }

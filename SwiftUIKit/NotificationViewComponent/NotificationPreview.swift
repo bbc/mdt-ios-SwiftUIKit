@@ -11,15 +11,27 @@ struct NotificationPreview: View {
     var body: some View {
         List {
             Section("Standalone notifications") {
-                NotificationView(notificationData: testNotification.info.data)
-                NotificationView(notificationData: testNotification.warning.data)
+                NotificationView(type: .info,
+                                 title: TestNotification.info.data.title,
+                                 message: TestNotification.info.data.message,
+                                 standalone: true)
+                NotificationView(type: .warning,
+                                 title: TestNotification.warning.data.title,
+                                 message: TestNotification.warning.data.message,
+                                 standalone: true)
             }
             
             Section("Additional Notifications") {
                 Text("First row")
-                NotificationView(notificationData: testNotification.success.data)
+                NotificationView(type: .success,
+                                 title: TestNotification.success.data.title,
+                                 message: TestNotification.success.data.message,
+                                 standalone: false)
                 Text("Second row")
-                NotificationView(notificationData: testNotification.error.data)
+                NotificationView(type: .error,
+                                 title: TestNotification.error.data.title,
+                                 message: TestNotification.error.data.message,
+                                 standalone: false)
             }
             
         }

@@ -35,7 +35,7 @@ public enum BBCNotificationTypeHelper {
     static let positiveTypeDescription = "message"
 }
 
-public enum testNotification {
+public enum TestNotification {
     case info
     case success
     case warning
