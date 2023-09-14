@@ -18,7 +18,7 @@ struct NotificationAlternativeNavigationBar: View {
     var dismissButton: some View {
         Button(action: {}, label: {
             Label(BBCNotificationButtons.dismissName, systemImage: BBCNotificationButtons.dismissImage)
-                .labelStyle(.titleAndIcon)
+                .labelStyle(.iconOnly)
                 .foregroundColor(viewModel.notificationType.tintColor)
         })
         .onTapGesture {
@@ -78,19 +78,14 @@ struct NotificationAlternativeNavigationBar: View {
     //MARK: - View
     var body: some View {
         
-        HStack {
-            dismissButton
-            Spacer()
-            if #available(iOS 16.0, *) {
+            HStack {
+                dismissButton
+                Spacer()
+                Text(viewModel.notificationType.typeName.capitalized)
+                    .fontWeight(.semibold)
+                Spacer()
                 shareButton
-                    .fontWeight(.bold)
-            } else {
-                shareButton
-                    .font(.title2)
             }
-            
-        }
-        .listRowBackground(Color(uiColor: viewModel.notificationType.backgroundColor).opacity(0.2))
     }
 }
 

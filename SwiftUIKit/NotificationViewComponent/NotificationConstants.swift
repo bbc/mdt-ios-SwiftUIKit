@@ -17,7 +17,7 @@ public enum BBCNotificationButtons {
     static let comfirmationDialogTitle = "Please share your feedback"
     static let sendFeedbackButtonTitle = "Send "
     static let copyButtonTitle = "Copy to clipboard"
-    static let shareLinkTitle = "Share via..."
+    static let shareLinkTitle = "Share"
 }
 
 public enum BBCNotificationPhrases {

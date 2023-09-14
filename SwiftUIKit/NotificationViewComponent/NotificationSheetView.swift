@@ -15,14 +15,16 @@ struct NotificationSheetView: View {
     
     var body: some View {
         List {
-            // Header
             NotificationAlternativeNavigationBar(viewModel: notificationViewModel)
             .padding(.bottom, -10)
+            .listRowBackground(Color(uiColor: notificationViewModel.notificationType.backgroundColor).opacity(0.2))
             .listRowSeparator(.hidden)
             
             // Title
-            NotificationHeaderView(viewModel: notificationViewModel)
-            .padding(.top, -2)
+            Text(notificationViewModel.notificationTitle)
+                .listRowSeparatorTint(notificationViewModel.notificationType.tintColor)
+                .listRowBackground(Color(uiColor: notificationViewModel.notificationType.backgroundColor).opacity(0.2))
+                .padding(.top, -2)
             
             // Main text
             Text(notificationViewModel.notificationMessage)
