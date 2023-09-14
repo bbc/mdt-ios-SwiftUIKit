@@ -85,18 +85,23 @@ class NotificationViewModel: ObservableObject {
     }
     
     func canNotificationBeExtanded(_ geometry: GeometryProxy) {
-        let total = self.notificationMessage.boundingRect(
-            with: CGSize(
-                width: geometry.size.width,
-                height: .greatestFiniteMagnitude
-            ),
-            options: .usesLineFragmentOrigin,
-            attributes: [.font: standalone ? UIFont.preferredFont(forTextStyle: .subheadline) : UIFont.preferredFont(forTextStyle: .caption1)],
-            context: nil
-        )
-
-        if total.size.height > geometry.size.height {
+        if notificationType.isAlwaysExtendable {
             self.canBeExpanded = true
+            return
+        } else {
+            let total = self.notificationMessage.boundingRect(
+                with: CGSize(
+                    width: geometry.size.width,
+                    height: .greatestFiniteMagnitude
+                ),
+                options: .usesLineFragmentOrigin,
+                attributes: [.font: standalone ? UIFont.preferredFont(forTextStyle: .subheadline) : UIFont.preferredFont(forTextStyle: .caption1)],
+                context: nil
+            )
+
+            if total.size.height > geometry.size.height {
+                self.canBeExpanded = true
+            }
         }
     }
 }

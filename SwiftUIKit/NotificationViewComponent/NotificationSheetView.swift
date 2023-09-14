@@ -24,7 +24,7 @@ struct NotificationSheetView: View {
             Text(notificationViewModel.notificationTitle)
                 .listRowSeparatorTint(notificationViewModel.notificationType.tintColor)
                 .listRowBackground(Color(uiColor: notificationViewModel.notificationType.backgroundColor).opacity(0.2))
-                .padding(.top, -2)
+                .padding(.top, -5)
             
             // Main text
             Text(notificationViewModel.notificationMessage)

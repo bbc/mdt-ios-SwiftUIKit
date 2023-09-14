@@ -73,5 +73,14 @@ struct NotificationData {
             }
         }
         
+        var isAlwaysExtendable: Bool {
+            switch self {
+            case .info, .success:
+                return false
+            case .warning, .error:
+                return true
+            }
+        }
+        
     }
 }
