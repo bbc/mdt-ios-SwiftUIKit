@@ -61,20 +61,15 @@ struct NotificationData {
         }
         
         var typeName: String {
-            switch self {
-            case .info, .success:
-                return BBCNotificationTypeHelper.positiveTypeDescription
-            case .warning, .error:
-                return String(describing: self)
-            }
+            return String(describing: self)
         }
         
-        var shareOption: String {
+        var canReportBug: Bool {
             switch self {
             case .info, .success:
-                return BBCNotificationTypeHelper.feedbackShareOption
+                return false
             case .warning, .error:
-                return BBCNotificationTypeHelper.bugShareOption
+                return true
             }
         }
         

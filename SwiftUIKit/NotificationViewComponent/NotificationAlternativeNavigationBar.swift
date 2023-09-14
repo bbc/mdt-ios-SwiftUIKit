@@ -26,24 +26,30 @@ struct NotificationAlternativeNavigationBar: View {
         }
     }
     
-    var shareButton: some View {
-        Button(action: {}, label: {
-            Label(BBCNotificationButtons.shareName, systemImage: BBCNotificationButtons.shareImage)
-                .labelStyle(.iconOnly)
-                .foregroundColor(viewModel.notificationType.tintColor)
-        })
-        .onTapGesture {
-            isShowingConfirmationDialog = true
-        }
-        .confirmationDialog(BBCNotificationButtons.comfirmationDialogTitle, isPresented: $isShowingConfirmationDialog, titleVisibility: .hidden) {
-            sendFeedbackButton
-            shareOrCopyOption
+    var shareButton: AnyView {
+        if viewModel.notificationType.canReportBug {
+            return AnyView(
+                Button(action: {}, label: {
+                    Label(BBCNotificationButtons.shareName, systemImage: BBCNotificationButtons.shareImage)
+                        .labelStyle(.iconOnly)
+                        .foregroundColor(viewModel.notificationType.tintColor)
+                })
+                .onTapGesture {
+                    isShowingConfirmationDialog = true
+                }
+                .confirmationDialog(BBCNotificationButtons.comfirmationDialogTitle, isPresented: $isShowingConfirmationDialog, titleVisibility: .hidden) {
+                    sendFeedbackButton
+                    shareOrCopyOption
+                }
+            )
+        } else {
+            return AnyView(EmptyView())
         }
     }
     
     var sendFeedbackButton: AnyView {
         if viewModel.isFeedbackAvailible {
-            let buttonName = BBCNotificationButtons.sendFeedbackButtonTitle + viewModel.notificationType.shareOption
+            let buttonName = BBCNotificationButtons.sendBugReportButtonTitle
             return AnyView(
                 Button(buttonName,
                        action: {
