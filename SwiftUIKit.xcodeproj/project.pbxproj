@@ -106,13 +106,13 @@
 		A579C9632A3B6EA500D0E5B1 /* SwiftUIKit */ = {
 			isa = PBXGroup;
 			children = (
-				A5195C582AA61C080025E5B4 /* NotificationViewComponent */,
 				A579C9642A3B6EA500D0E5B1 /* SwiftUIKitApp.swift */,
 				A579C9662A3B6EA500D0E5B1 /* ContentView.swift */,
 				A579C9682A3B6EA600D0E5B1 /* Assets.xcassets */,
 				A579C96A2A3B6EA600D0E5B1 /* SwiftUIKit.entitlements */,
 				A5544F5C2A5EF772007C9E2F /* HTMLStylingComponent */,
 				A579C9732A3B706100D0E5B1 /* BannerComponent */,
+				A5195C582AA61C080025E5B4 /* NotificationViewComponent */,
 				A579C96B2A3B6EA600D0E5B1 /* Preview Content */,
 			);
 			path = SwiftUIKit;

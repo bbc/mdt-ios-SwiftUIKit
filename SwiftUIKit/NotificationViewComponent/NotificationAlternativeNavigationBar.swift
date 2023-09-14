@@ -43,8 +43,9 @@ struct NotificationAlternativeNavigationBar: View {
     
     var sendFeedbackButton: AnyView {
         if viewModel.isFeedbackAvailible {
+            let buttonName = BBCNotificationButtons.sendFeedbackButtonTitle + viewModel.notificationType.shareOption
             return AnyView(
-                Button(BBCNotificationButtons.sendFeedbackButtonTitle,
+                Button(buttonName,
                        action: {
                            //TODO: Add functionality
                            print("Note that no report about was sent!")
@@ -71,7 +72,7 @@ struct NotificationAlternativeNavigationBar: View {
     
     @available(iOS 16.0, *)
     var shareLink: some View {
-        ShareLink(String(BBCNotificationButtons.shareLinkTitle + viewModel.notificationType.typeName), item: viewModel.messageToCopy)
+        ShareLink(String(BBCNotificationButtons.shareLinkTitle), item: viewModel.messageToCopy)
     }
     
     //MARK: - View

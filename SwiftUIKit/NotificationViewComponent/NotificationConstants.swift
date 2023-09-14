@@ -15,9 +15,9 @@ public enum BBCNotificationButtons {
     static let shareImage = "square.and.arrow.up"
     
     static let comfirmationDialogTitle = "Please share your feedback"
-    static let sendFeedbackButtonTitle = "Send feedback"
+    static let sendFeedbackButtonTitle = "Send "
     static let copyButtonTitle = "Copy to clipboard"
-    static let shareLinkTitle = "Share a description of this "
+    static let shareLinkTitle = "Share via..."
 }
 
 public enum BBCNotificationPhrases {
@@ -31,8 +31,11 @@ public enum BBCNotificationTypeHelper {
     static let successIcon = "checkmark.circle"
     static let warningIcon = "exclamationmark.triangle"
     static let errorIcon = "xmark.circle"
-    
+
     static let positiveTypeDescription = "message"
+        
+    static let bugShareOption = "bug report"
+    static let feedbackShareOption = "feedback"
 }
 
 public enum testNotification {

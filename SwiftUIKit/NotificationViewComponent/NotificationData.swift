@@ -64,8 +64,17 @@ struct NotificationData {
             switch self {
             case .info, .success:
                 return BBCNotificationTypeHelper.positiveTypeDescription
-            case .warning , .error:
+            case .warning, .error:
                 return String(describing: self)
+            }
+        }
+        
+        var shareOption: String {
+            switch self {
+            case .info, .success:
+                return BBCNotificationTypeHelper.feedbackShareOption
+            case .warning, .error:
+                return BBCNotificationTypeHelper.bugShareOption
             }
         }
         
