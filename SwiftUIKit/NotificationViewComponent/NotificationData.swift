@@ -14,10 +14,6 @@ struct NotificationData {
     var message: String
     var standalone: Bool = false
     
-    static func defaultData() -> NotificationData {
-        return NotificationData(type: .info, title: "", message: "", standalone: false)
-    }
-    
     enum NotificationType {
         
         case info

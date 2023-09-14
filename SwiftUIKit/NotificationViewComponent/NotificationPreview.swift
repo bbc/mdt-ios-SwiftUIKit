@@ -10,7 +10,7 @@ import SwiftUI
 struct NotificationPreview: View {
     var body: some View {
         List {
-            Section("Stanalone notifications") {
+            Section("Standalone notifications") {
                 NotificationView(notificationData: testNotification.info.data)
                 NotificationView(notificationData: testNotification.warning.data)
             }

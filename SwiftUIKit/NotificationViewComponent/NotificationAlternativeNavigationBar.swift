@@ -80,8 +80,14 @@ struct NotificationAlternativeNavigationBar: View {
         HStack {
             dismissButton
             Spacer()
-            shareButton
-                .font(.title2)
+            if #available(iOS 16.0, *) {
+                shareButton
+                    .fontWeight(.bold)
+            } else {
+                shareButton
+                    .font(.title2)
+            }
+            
         }
         .listRowBackground(Color(uiColor: viewModel.notificationType.backgroundColor).opacity(0.2))
     }
