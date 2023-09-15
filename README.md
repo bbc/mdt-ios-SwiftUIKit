@@ -1,6 +1,10 @@
 # mdt-demo-SwiftUI-Kit
 Library of Swift UI Components for BBC Mobile Development Team.
 
+## 📑 Table of content
+* [BannerView](#bannerview-component)
+* [NotificationView](#notificationview-component)
+
 ## BannerView Component
 ### Description
 My solution for banner view in SwiftUI is a View Modifier. Which means that it can only be used with another view. But the control over it can be delegated to the view model (or somewhere else) when necessary. 
@@ -57,3 +61,30 @@ func showLoadingBanner() {
 </details>
 
 If you like to see more options - download the project and check previews for the BannerView.
+
+
+## NotificationView Component
+### Description
+This view started as a way to show user an error without making it an alert. It evolved into a rater subtile notification view - which does not require user to react to it immediately in any way, but allows them to share the bug report in a few clicks.
+
+### How it works
+To get a notification view simply call it with default initialiser:
+```
+NotificationView(type: .info,
+                 title: "Update in 2 hours",
+                 message: "Please note that the app will be unavailable for 30 minutes later today for maintainance work 🛠️",
+                 standalone: true)
+```
+
+**For the error and warning notifications** make sure to display localised description of an error in message field - it usually is more readable plus it will be exactly the thing user will have an option to report as a bug description. 
+
+Additionally, it’s possible to disable report a bug feature inside the sharing options - for example, in rare case of the bug is happening inside the feedback pod itself. To do so pass a negative value to the `isFeedbackAvailible` variable inside NotificationViewModel. 
+
+### How notifications look
+<img width="450" alt="notificationTypesList" src="https://github.com/bbc/mdt-ios-SwiftUIKit/assets/45575272/5b2fed1a-74e6-4f50-9774-ac2f30e8f54a">
+<img width="450" alt="shareOptions" src="https://github.com/bbc/mdt-ios-SwiftUIKit/assets/45575272/ca9f2fc1-a7ce-418c-b00e-90849bd4a9ec">  
+<img width="450" alt="notificationDarkMode" src="https://github.com/bbc/mdt-ios-SwiftUIKit/assets/45575272/b52aeb4b-4097-404e-af9b-3774ee229982">
+<img width="450" alt="dynamicNotificationFont" src="https://github.com/bbc/mdt-ios-SwiftUIKit/assets/45575272/ec0b2c5b-3e70-4355-ac3f-c9c66c394bbe">
+
+If you like to see more options - download the project and check NotificationPreview.
+

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 16.0, *)
 struct BannerPreview: View {
     
     var banners = BannerTestData.testBanners
@@ -51,6 +52,7 @@ struct BannerPreview: View {
     }
 }
 
+@available(iOS 16.0, *)
 struct BannerPreview_Previews: PreviewProvider {
     static var previews: some View {
         BannerPreview()

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5195C5A2AA61C490025E5B4 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5195C592AA61C490025E5B4 /* NotificationView.swift */; };
+		A5195C5C2AA61C760025E5B4 /* NotificationSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5195C5B2AA61C760025E5B4 /* NotificationSheetView.swift */; };
+		A5195C5E2AA61C970025E5B4 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5195C5D2AA61C970025E5B4 /* NotificationViewModel.swift */; };
+		A5195C602AA61CC90025E5B4 /* NotificationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5195C5F2AA61CC90025E5B4 /* NotificationData.swift */; };
+		A5195C622AA8AC550025E5B4 /* NotificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5195C612AA8AC550025E5B4 /* NotificationError.swift */; };
+		A5195C642AA8AD330025E5B4 /* NotificationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5195C632AA8AD330025E5B4 /* NotificationConstants.swift */; };
+		A5195C662AA8CDEA0025E5B4 /* NotificationAlternativeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5195C652AA8CDEA0025E5B4 /* NotificationAlternativeNavigationBar.swift */; };
+		A5195C6C2AA8DBBD0025E5B4 /* NotificationPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5195C6B2AA8DBBD0025E5B4 /* NotificationPreview.swift */; };
 		A5544F5E2A5EF798007C9E2F /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5544F5D2A5EF798007C9E2F /* String+Ext.swift */; };
 		A579C9652A3B6EA500D0E5B1 /* SwiftUIKitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579C9642A3B6EA500D0E5B1 /* SwiftUIKitApp.swift */; };
 		A579C9672A3B6EA500D0E5B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579C9662A3B6EA500D0E5B1 /* ContentView.swift */; };
@@ -20,6 +28,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A5195C592AA61C490025E5B4 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		A5195C5B2AA61C760025E5B4 /* NotificationSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSheetView.swift; sourceTree = "<group>"; };
+		A5195C5D2AA61C970025E5B4 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		A5195C5F2AA61CC90025E5B4 /* NotificationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationData.swift; sourceTree = "<group>"; };
+		A5195C612AA8AC550025E5B4 /* NotificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationError.swift; sourceTree = "<group>"; };
+		A5195C632AA8AD330025E5B4 /* NotificationConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConstants.swift; sourceTree = "<group>"; };
+		A5195C652AA8CDEA0025E5B4 /* NotificationAlternativeNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAlternativeNavigationBar.swift; sourceTree = "<group>"; };
+		A5195C6B2AA8DBBD0025E5B4 /* NotificationPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreview.swift; sourceTree = "<group>"; };
 		A5544F5D2A5EF798007C9E2F /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		A579C9612A3B6EA500D0E5B1 /* SwiftUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A579C9642A3B6EA500D0E5B1 /* SwiftUIKitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIKitApp.swift; sourceTree = "<group>"; };
@@ -45,6 +61,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5195C582AA61C080025E5B4 /* NotificationViewComponent */ = {
+			isa = PBXGroup;
+			children = (
+				A5195C592AA61C490025E5B4 /* NotificationView.swift */,
+				A5195C5B2AA61C760025E5B4 /* NotificationSheetView.swift */,
+				A5195C652AA8CDEA0025E5B4 /* NotificationAlternativeNavigationBar.swift */,
+				A5195C5D2AA61C970025E5B4 /* NotificationViewModel.swift */,
+				A5195C5F2AA61CC90025E5B4 /* NotificationData.swift */,
+				A5195C612AA8AC550025E5B4 /* NotificationError.swift */,
+				A5195C632AA8AD330025E5B4 /* NotificationConstants.swift */,
+				A5195C6B2AA8DBBD0025E5B4 /* NotificationPreview.swift */,
+			);
+			path = NotificationViewComponent;
+			sourceTree = "<group>";
+		};
 		A5544F5C2A5EF772007C9E2F /* HTMLStylingComponent */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +109,7 @@
 				A579C96A2A3B6EA600D0E5B1 /* SwiftUIKit.entitlements */,
 				A5544F5C2A5EF772007C9E2F /* HTMLStylingComponent */,
 				A579C9732A3B706100D0E5B1 /* BannerComponent */,
+				A5195C582AA61C080025E5B4 /* NotificationViewComponent */,
 				A579C96B2A3B6EA600D0E5B1 /* Preview Content */,
 			);
 			path = SwiftUIKit;
@@ -173,14 +205,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5195C602AA61CC90025E5B4 /* NotificationData.swift in Sources */,
 				A579C97D2A3B706100D0E5B1 /* View+Ext.swift in Sources */,
+				A5195C6C2AA8DBBD0025E5B4 /* NotificationPreview.swift in Sources */,
 				A579C97A2A3B706100D0E5B1 /* BannerView.swift in Sources */,
 				A579C9672A3B6EA500D0E5B1 /* ContentView.swift in Sources */,
+				A5195C662AA8CDEA0025E5B4 /* NotificationAlternativeNavigationBar.swift in Sources */,
+				A5195C622AA8AC550025E5B4 /* NotificationError.swift in Sources */,
+				A5195C5C2AA61C760025E5B4 /* NotificationSheetView.swift in Sources */,
 				A579C9792A3B706100D0E5B1 /* BannerPreview.swift in Sources */,
 				A579C97B2A3B706100D0E5B1 /* BannerData.swift in Sources */,
 				A579C97C2A3B706100D0E5B1 /* BannerModifier.swift in Sources */,
 				A5544F5E2A5EF798007C9E2F /* String+Ext.swift in Sources */,
+				A5195C642AA8AD330025E5B4 /* NotificationConstants.swift in Sources */,
+				A5195C5A2AA61C490025E5B4 /* NotificationView.swift in Sources */,
 				A579C9652A3B6EA500D0E5B1 /* SwiftUIKitApp.swift in Sources */,
+				A5195C5E2AA61C970025E5B4 /* NotificationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +277,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -289,6 +331,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -319,7 +363,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -357,7 +401,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
