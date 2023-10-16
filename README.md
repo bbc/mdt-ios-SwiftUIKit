@@ -4,6 +4,7 @@ Library of Swift UI Components for BBC Mobile Development Team.
 ## 📑 Table of content
 * [BannerView](#bannerview-component)
 * [NotificationView](#notificationview-component)
+* [CornerButton](#cornerbutton-component)
 
 ## BannerView Component
 ### Description
@@ -88,3 +89,26 @@ Additionally, it’s possible to disable report a bug feature inside the sharing
 
 If you like to see more options - download the project and check NotificationPreview.
 
+## CornerButton Component
+### Description
+It is essentially a view modifier that allows to add a corner button to any view. Right now corner button has two modes - edit and delete buttons. The icons, background and alignment of the button changes depending on the mode. 
+<br> It is possible to add more modes in the future, if needed.
+
+### How it works
+It is a very straight forward. Just add this view modifier to the view:
+```
+.overlayCornerButton(role: .delete) {
+           //your function
+ }
+```
+
+**Notes**: 
+<br> - do not use padding on the view before applying this overlay - it will mess the alignment. Add all the paddings after the overlay;
+<br> - this component works best if the parent view has corner radius at least 10.
+
+### How corner buttons look
+Light & dark versions:
+<br> <img width="150" alt="CornerButtonsLight" src="https://github.com/bbc/mdt-ios-SwiftUIKit/assets/45575272/1261699e-685c-45ea-a2bc-804ed08690be">
+<img width="150" alt="CornerButtonsDark" src="https://github.com/bbc/mdt-ios-SwiftUIKit/assets/45575272/571572cd-fdae-40a3-b27d-d4a555d3d637">
+<br> Buttons in use:
+<br> <img width="450" alt="CornerButtonsInFeedbackPod" src="https://github.com/bbc/mdt-ios-SwiftUIKit/assets/45575272/cb17f01f-9fb1-4ea7-be24-557c1b8319a0">
