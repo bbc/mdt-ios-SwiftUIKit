@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        NotificationPreview()
+        CornerButtonPreview(image: Image(systemName: "heart.text.square"))
     }
 }
 
