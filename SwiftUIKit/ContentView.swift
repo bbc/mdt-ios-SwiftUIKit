@@ -10,7 +10,11 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        CornerButtonPreview(image: Image(systemName: "heart.text.square"))
+        if #available(iOS 16.0, *) {
+            BannerParentView()
+        } else {
+            Text("No view")
+        }
     }
 }
 
