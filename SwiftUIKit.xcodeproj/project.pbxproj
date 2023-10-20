@@ -143,7 +143,7 @@
 		A579C9732A3B706100D0E5B1 /* BannerComponent */ = {
 			isa = PBXGroup;
 			children = (
-				A5F15EE42ADEE25100B61C87 /* BannerChildAndParentViewPreviews */,
+				A5F15EE42ADEE25100B61C87 /* BannerChildAndParentPreviews */,
 				A579C9742A3B706100D0E5B1 /* BannerPreview.swift */,
 				A579C9752A3B706100D0E5B1 /* BannerView.swift */,
 				A579C9762A3B706100D0E5B1 /* BannerData.swift */,
@@ -164,7 +164,7 @@
 			path = CornerButtonComponent;
 			sourceTree = "<group>";
 		};
-		A5F15EE42ADEE25100B61C87 /* BannerChildAndParentViewPreviews */ = {
+		A5F15EE42ADEE25100B61C87 /* BannerChildAndParentPreviews */ = {
 			isa = PBXGroup;
 			children = (
 				A5F15EE52ADEE28300B61C87 /* BannerParentView.swift */,
@@ -172,7 +172,7 @@
 				A5F15EEB2ADEE70D00B61C87 /* BannerChildView.swift */,
 				A5F15EE72ADEE46000B61C87 /* BannerChildViewModel.swift */,
 			);
-			path = BannerChildAndParentViewPreviews;
+			path = BannerChildAndParentPreviews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
