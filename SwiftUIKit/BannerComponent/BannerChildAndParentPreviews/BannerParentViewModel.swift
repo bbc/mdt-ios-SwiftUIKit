@@ -6,7 +6,16 @@
 //
 
 import Foundation
+import Combine
 
 class BannerParentViewModel: ObservableObject {
-    var childViewModel = BannerChildViewModel()
+    @Published var childViewModel = BannerChildViewModel()
+    
+    var anyCancellable: AnyCancellable? = nil
+
+        init() {
+            anyCancellable = childViewModel.objectWillChange.sink { [weak self] (_) in
+                self?.objectWillChange.send()
+            }
+        }
 }
