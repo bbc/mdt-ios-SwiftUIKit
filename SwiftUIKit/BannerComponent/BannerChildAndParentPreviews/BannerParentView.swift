@@ -9,8 +9,8 @@ import SwiftUI
 
 struct BannerParentView: View {
     
-    @StateObject private var viewModel: BannerParentViewModel = BannerParentViewModel()
-    
+    @StateObject private var viewModel = BannerParentViewModel()
+
     var body: some View {
         VStack {
             Image(systemName: "bubbles.and.sparkles")
@@ -18,15 +18,14 @@ struct BannerParentView: View {
                 .foregroundStyle(.green)
                 .padding(.bottom)
             
-            BannerChildView(viewModel: viewModel.childViewModel)
+            BannerChildView(viewModel:  $viewModel.childViewModel)
                 .padding()
             
             Image(systemName: "testtube.2")
                 .font(.largeTitle)
                 .foregroundStyle(.green)
         }
-        .banner(data: $viewModel.childViewModel.bannerData, 
-                showBanner: $viewModel.childViewModel.isShowingBanner)
+        .banner(data: $viewModel.childViewModel.bannerData, showBanner: $viewModel.childViewModel.isShowingBanner)
     }
 }
 
