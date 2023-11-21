@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BannerChildView: View {
     
-    @StateObject var viewModel: BannerChildViewModel
+    @Binding var viewModel: BannerChildViewModel
     
     var body: some View {
         VStack {

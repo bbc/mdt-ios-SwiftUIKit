@@ -5,11 +5,8 @@
 //  Created by Maria Kharybina on 17/10/2023.
 //
 
-import SwiftUI
+import Foundation
 
 class BannerParentViewModel: ObservableObject {
-        
-    @Published var isShowingBanner: Bool = false
-    @Published var bannerData: BannerData = BannerData.defaultData()
-    
+    var childViewModel = BannerChildViewModel()
 }

@@ -18,7 +18,7 @@ struct BannerModifier: ViewModifier {
                 .zIndex(-1)
             if showBanner {
                 BannerView(data: data)
-                    .animation(.spring())
+                    .animation(.spring, value: data)
                     .transition(.move(edge: .top).combined(with: .opacity))
                     .onTapGesture {
                         withAnimation {

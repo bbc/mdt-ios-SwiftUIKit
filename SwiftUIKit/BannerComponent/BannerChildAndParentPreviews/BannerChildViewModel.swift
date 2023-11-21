@@ -7,14 +7,11 @@
 
 import SwiftUI
 
+//should it not be an observable object?
 class BannerChildViewModel: ObservableObject {
-    @Binding var isShowingBanner: Bool
-    @Binding var bannerData: BannerData
-    
-    init(isShowingBanner: Binding<Bool>, bannerData: Binding<BannerData>) {
-        _isShowingBanner = isShowingBanner
-        _bannerData = bannerData
-    }
+
+    var isShowingBanner: Bool = false
+    var bannerData: BannerData = BannerData.defaultData()
     
     func showErrorBanner() {
         DispatchQueue.main.async {
