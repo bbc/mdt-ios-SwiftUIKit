@@ -24,8 +24,19 @@ struct BannerParentView: View {
             Image(systemName: "testtube.2")
                 .font(.largeTitle)
                 .foregroundStyle(.green)
+            
+            Image(systemName: "flame.fill")
+                .font(.largeTitle)
+                .foregroundStyle(.purple)
+                .padding(.vertical)
+            
+            Button("Ooops!") {
+                viewModel.showWarningBanner()
+            }
+            .buttonStyle(.borderedProminent)
         }
         .banner(data: $viewModel.childViewModel.bannerData, showBanner: $viewModel.childViewModel.isShowingBanner)
+        .banner(data: $viewModel.bannerData, showBanner: $viewModel.isShowingBanner)
     }
 }
 
