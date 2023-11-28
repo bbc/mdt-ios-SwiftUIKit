@@ -9,40 +9,27 @@ import SwiftUI
 
 struct BannerContentView: View {
     @ObservedObject var bannerManager: PresentBannerManager
+    
+    var body: some View {
         
-        var body: some View {
-            VStack {
-                HStack {
-                    Image.init(systemName: "scribble.variable")
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(bannerManager.banner?.title ?? "")
-                            .bold()
-                        Text(bannerManager.banner?.message ?? "")
-                            .fontWeight(.medium)
-    }
-                    Spacer()
-                }
-                .padding(12)
-                .foregroundColor(.white)
-                .background(Color.gray)
-                .cornerRadius(8)
-                
-                Spacer()
-            }
-            .padding()
-            .animation(.easeInOut, value: bannerManager.banner)
+        BannerView(data: bannerManager.data)
+            .animation(.spring, value: bannerManager.data)
             .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
             .onTapGesture {
-                withAnimation {
-                    bannerManager.dismiss()
+                if bannerManager.data.type.dismissMe {
+                    withAnimation {
+                        bannerManager.dismissBanner()
+                    }
                 }
             }
             .onAppear(perform: {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    withAnimation {
-                        bannerManager.dismiss()
+                if bannerManager.data.type.dismissMe {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + bannerManager.data.duration) {
+                        withAnimation {
+                            bannerManager.dismissBanner()
+                        }
                     }
                 }
             })
-        }
+    }
 }

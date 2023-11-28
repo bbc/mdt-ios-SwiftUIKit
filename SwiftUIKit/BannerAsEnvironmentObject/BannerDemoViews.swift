@@ -49,7 +49,7 @@ struct TabContent01: View {
         NavigationView {
             VStack {
                 Button(action: {
-                    viewModel.showBanner()
+                    viewModel.showBannerFromVM()
                 }, label: {
                     Text("Present ShowGlobalBanner")
                 })

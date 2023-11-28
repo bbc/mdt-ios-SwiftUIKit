@@ -14,7 +14,7 @@ class TabContent01ViewModel: ObservableObject {
         self.bannerManager = bannerManager
     }
     
-    func showBanner() {
+    func showBannerFromVM() {
         bannerManager.showBanner(bannerData: BannerData.defaultData())
     }
 }
