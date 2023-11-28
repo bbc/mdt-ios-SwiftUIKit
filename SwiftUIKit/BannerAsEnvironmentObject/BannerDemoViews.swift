@@ -56,11 +56,23 @@ struct TabContent01: View {
                 .padding()
                 
                 Button(action: {
-                    self.banerManager.dismiss()
+                    self.banerManager.dismissBanner()
                 }, label: {
                     Text("Dismiss ShowGlobalBanner")
                 })
                 .padding()
+                
+                Button(action: {
+                    self.banerManager.showBanner(bannerData: BannerData(type: .loading, detail: "In a minute!"))
+                }, label: {
+                    Text("Start loading")
+                })
+                
+                Button(action: {
+                    self.banerManager.dismissBanner()
+                }, label: {
+                    Text("Stop loading")
+                })
                 
                 NavigationLink(destination: DemoView()) {
                     Text("Go to next View")
@@ -79,10 +91,7 @@ struct TabContent02: View {
         NavigationView {
             VStack {
                 Button(action: {
-                    self.banerManager.banner = .init(
-                        title: "demo title",
-                        message: "demo message"
-                    )
+                    banerManager.showBanner(bannerData: BannerData.defaultData())
                 }, label: {
                     Text("Present ShowGlobalBanner")
                 })
@@ -100,10 +109,7 @@ struct DemoView: View {
     var body: some View {
         VStack {
             Button(action: {
-                self.banerManager.banner = .init(
-                    title: "demo title",
-                    message: "demo message"
-                )
+                banerManager.showBanner(bannerData: BannerData.defaultData())
             }, label: {
                 Text("Present ShowGlobalBanner")
             })
