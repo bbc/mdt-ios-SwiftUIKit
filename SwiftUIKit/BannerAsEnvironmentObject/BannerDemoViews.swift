@@ -9,30 +9,32 @@ import SwiftUI
 
 struct BannerDemoView: View {
     
-    @StateObject var bannerManager = PresentBannerManager()
+    @StateObject var bannerManager = BannerManager()
     
     var body: some View {
         ZStack {
-            DemoGlobalMessageTab()
+            BannerMainView()
                 .environmentObject(bannerManager)
+                .zIndex(-1)
             if bannerManager.isPresented {
                 BannerContentView(bannerManager: bannerManager)
             }
         }
     }
+    
 }
 
-struct DemoGlobalMessageTab: View {
-    @EnvironmentObject var banerManager: PresentBannerManager
+struct BannerMainView: View {
+    @EnvironmentObject var bannerManager: BannerManager
     
     var body: some View {
         TabView() {
-            TabContent01(viewModel: TabContent01ViewModel(bannerManager: banerManager))
+            FirstTabView(viewModel: FirstTabViewModel())
                 .tabItem {
                     Image(systemName: "person.crop.circle")
                     Text("01")
                 }
-            TabContent02()
+            SecondTabView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("02")
@@ -41,59 +43,87 @@ struct DemoGlobalMessageTab: View {
     }
 }
 
-struct TabContent01: View {
-    @EnvironmentObject var banerManager: PresentBannerManager
-    @ObservedObject var viewModel: TabContent01ViewModel
+struct FirstTabView: View {
+    @EnvironmentObject var bannerManager: BannerManager
+    @ObservedObject var viewModel: FirstTabViewModel
     
     var body: some View {
         NavigationView {
             VStack {
-                Button(action: {
-                    viewModel.showBannerFromVM()
-                }, label: {
-                    Text("Present ShowGlobalBanner")
-                })
-                .padding()
+                Text("Show banner from the view model:")
+                VStack {
+                    Button("Success") {
+                        viewModel.someProcessWentRight()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.green)
+                    
+                    Button("Error") {
+                        viewModel.someProcessWentWrong()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.red)
+                    
+                    HStack {
+                        Button("Start Loading") {
+                            viewModel.startLoading()
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.blue)
+                        
+                        Button("Stop loading") {
+                            viewModel.stopLoading()
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.blue)
+                    }
+                    
+                }
                 
-                Button(action: {
-                    self.banerManager.dismissBanner()
-                }, label: {
-                    Text("Dismiss ShowGlobalBanner")
-                })
-                .padding()
+                Text("Show banner from the view:")
+                Button("Show warning") {
+                    self.bannerManager.showBanner(bannerData: .init(type: .warning, detail: "Something may go wrong here!"))
+                }
                 
-                Button(action: {
-                    self.banerManager.showBanner(bannerData: BannerData(type: .loading, detail: "In a minute!"))
-                }, label: {
-                    Text("Start loading")
-                })
-                
-                Button(action: {
-                    self.banerManager.dismissBanner()
-                }, label: {
-                    Text("Stop loading")
-                })
+                HStack {
+                    Button("Start loading") {
+                        self.bannerManager.showBanner(bannerData: BannerData(type: .loading, detail: "In a minute!"))
+                    }
+                    
+                    Button("Stop loading") {
+                        self.bannerManager.dismissBanner()
+                    }
+                }
                 
                 NavigationLink(destination: DemoView()) {
                     Text("Go to next View")
                 }
                 .padding()
             }
+            .onChange(of: viewModel.bannerData, perform: { _ in
+                guard let newData = viewModel.bannerData else { return }
+                bannerManager.showBanner(bannerData: newData)
+            })
+            .onChange(of: viewModel.finishedLoading, perform: { _ in
+                if viewModel.finishedLoading {
+                    bannerManager.dismissBanner()
+                }
+            })
             .navigationTitle("First")
         }
     }
 }
 
-struct TabContent02: View {
-    @EnvironmentObject var banerManager: PresentBannerManager
+struct SecondTabView: View {
+    @EnvironmentObject var bannerManager: BannerManager
     
     var body: some View {
         NavigationView {
             VStack {
                 Button(action: {
-                    banerManager.showBanner(bannerData: BannerData.defaultData())
+                    bannerManager.showBanner(bannerData: BannerData.defaultData())
                 }, label: {
-                    Text("Present ShowGlobalBanner")
+                    Text("ShowBanner")
                 })
                 .padding()
                 
@@ -104,14 +134,14 @@ struct TabContent02: View {
 }
 
 struct DemoView: View {
-    @EnvironmentObject var banerManager: PresentBannerManager
+    @EnvironmentObject var bannerManager: BannerManager
     
     var body: some View {
         VStack {
             Button(action: {
-                banerManager.showBanner(bannerData: BannerData.defaultData())
+                bannerManager.showBanner(bannerData: BannerData.defaultData())
             }, label: {
-                Text("Present ShowGlobalBanner")
+                Text("Show banner")
             })
             .padding()
         }

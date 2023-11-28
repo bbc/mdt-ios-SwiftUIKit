@@ -7,14 +7,26 @@
 
 import Foundation
 
-class TabContent01ViewModel: ObservableObject {
-    var bannerManager: PresentBannerManager
+@MainActor
+final class FirstTabViewModel: ObservableObject {
     
-    init(bannerManager: PresentBannerManager) {
-        self.bannerManager = bannerManager
+    @Published var bannerData: BannerData?
+    @Published var finishedLoading: Bool = false
+    
+    func someProcessWentRight() {
+        bannerData = BannerData(type: .success, detail: "Yaay")
     }
     
-    func showBannerFromVM() {
-        bannerManager.showBanner(bannerData: BannerData.defaultData())
+    func someProcessWentWrong() {
+        bannerData = BannerData(type: .error, detail: "Ooops")
+    }
+    
+    func startLoading() {
+        bannerData = BannerData(type: .loading, detail: "In a second...")
+        finishedLoading = false
+    }
+    
+    func stopLoading() {
+        finishedLoading = true
     }
 }

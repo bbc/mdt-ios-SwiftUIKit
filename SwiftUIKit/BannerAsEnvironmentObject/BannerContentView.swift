@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct BannerContentView: View {
-    @ObservedObject var bannerManager: PresentBannerManager
+    @ObservedObject var bannerManager: BannerManager
     
     var body: some View {
-        
         BannerView(data: bannerManager.data)
             .animation(.spring, value: bannerManager.data)
             .transition(AnyTransition.move(edge: .top).combined(with: .opacity))

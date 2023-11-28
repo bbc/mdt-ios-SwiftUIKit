@@ -14,7 +14,6 @@ struct BannerView: View {
     var body: some View {
         VStack {
             HStack {
-                
                 if data.type == .loading {
                     ProgressView()
                         .tint(.white)
