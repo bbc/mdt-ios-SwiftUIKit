@@ -7,23 +7,25 @@
 
 import Foundation
 
-struct DemoBanner: Equatable {
-    let title: String
-    let message: String
-}
-
 final class PresentBannerManager: ObservableObject {
     @Published var isPresented: Bool = false
+    @Published var data: BannerData = BannerData.defaultData()
     
-    var banner: DemoBanner? {
-        didSet {
-            isPresented = banner != nil
+    public func showBanner(bannerData: BannerData) {
+        self.data = bannerData
+        self.isPresented = true
+    }
+    
+    public func dismissBanner() {
+        if isPresented {
+            self.isPresented = false
+            self.data = BannerData.defaultData()
         }
     }
     
-    public func dismiss() {
-        if isPresented {
-            isPresented = false
+    private func dispatchMainQueue(completion: @escaping () -> Void) {
+        DispatchQueue.main.async {
+            completion()
         }
     }
 }
