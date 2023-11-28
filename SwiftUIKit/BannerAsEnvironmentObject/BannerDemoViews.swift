@@ -23,9 +23,11 @@ struct BannerDemoView: View {
 }
 
 struct DemoGlobalMessageTab: View {
+    @EnvironmentObject var banerManager: PresentBannerManager
+    
     var body: some View {
         TabView() {
-            TabContent01()
+            TabContent01(viewModel: TabContent01ViewModel(bannerManager: banerManager))
                 .tabItem {
                     Image(systemName: "person.crop.circle")
                     Text("01")
@@ -41,15 +43,13 @@ struct DemoGlobalMessageTab: View {
 
 struct TabContent01: View {
     @EnvironmentObject var banerManager: PresentBannerManager
+    @ObservedObject var viewModel: TabContent01ViewModel
     
     var body: some View {
         NavigationView {
             VStack {
                 Button(action: {
-                    self.banerManager.banner = .init(
-                        title: "demo title",
-                        message: "demo message"
-                    )
+                    viewModel.showBanner()
                 }, label: {
                     Text("Present ShowGlobalBanner")
                 })

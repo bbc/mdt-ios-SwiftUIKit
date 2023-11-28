@@ -28,6 +28,7 @@
 		A5C90EBC2B15EDDC00145CD9 /* PresentBannerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C90EBB2B15EDDC00145CD9 /* PresentBannerManager.swift */; };
 		A5C90EBE2B15EE2900145CD9 /* BannerDemoViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C90EBD2B15EE2800145CD9 /* BannerDemoViews.swift */; };
 		A5C90EC02B15EE8600145CD9 /* BannerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C90EBF2B15EE8600145CD9 /* BannerContentView.swift */; };
+		A5C90EC22B15FD6200145CD9 /* BannerDemoViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C90EC12B15FD6200145CD9 /* BannerDemoViewModels.swift */; };
 		A5F15EDD2ADD425A00B61C87 /* CornerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F15EDC2ADD425A00B61C87 /* CornerButtonView.swift */; };
 		A5F15EDF2ADD42E000B61C87 /* CornerButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F15EDE2ADD42E000B61C87 /* CornerButtonHelper.swift */; };
 		A5F15EE12ADD43BF00B61C87 /* View+CornerButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F15EE02ADD43BF00B61C87 /* View+CornerButtonExt.swift */; };
@@ -62,6 +63,7 @@
 		A5C90EBB2B15EDDC00145CD9 /* PresentBannerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentBannerManager.swift; sourceTree = "<group>"; };
 		A5C90EBD2B15EE2800145CD9 /* BannerDemoViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerDemoViews.swift; sourceTree = "<group>"; };
 		A5C90EBF2B15EE8600145CD9 /* BannerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerContentView.swift; sourceTree = "<group>"; };
+		A5C90EC12B15FD6200145CD9 /* BannerDemoViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerDemoViewModels.swift; sourceTree = "<group>"; };
 		A5F15EDC2ADD425A00B61C87 /* CornerButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerButtonView.swift; sourceTree = "<group>"; };
 		A5F15EDE2ADD42E000B61C87 /* CornerButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerButtonHelper.swift; sourceTree = "<group>"; };
 		A5F15EE02ADD43BF00B61C87 /* View+CornerButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+CornerButtonExt.swift"; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				A5C90EBB2B15EDDC00145CD9 /* PresentBannerManager.swift */,
 				A5C90EBD2B15EE2800145CD9 /* BannerDemoViews.swift */,
+				A5C90EC12B15FD6200145CD9 /* BannerDemoViewModels.swift */,
 				A5C90EBF2B15EE8600145CD9 /* BannerContentView.swift */,
 			);
 			path = BannerAsEnvironmentObject;
@@ -265,6 +268,7 @@
 				A5F15EE62ADEE28300B61C87 /* BannerParentView.swift in Sources */,
 				A5195C602AA61CC90025E5B4 /* NotificationData.swift in Sources */,
 				A579C97D2A3B706100D0E5B1 /* View+BannerExt.swift in Sources */,
+				A5C90EC22B15FD6200145CD9 /* BannerDemoViewModels.swift in Sources */,
 				A5195C6C2AA8DBBD0025E5B4 /* NotificationPreview.swift in Sources */,
 				A5F15EE12ADD43BF00B61C87 /* View+CornerButtonExt.swift in Sources */,
 				A5F15EEC2ADEE70D00B61C87 /* BannerChildView.swift in Sources */,
