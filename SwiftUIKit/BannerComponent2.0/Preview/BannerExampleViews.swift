@@ -1,28 +1,11 @@
 //
-//  BannerDemoViews.swift
+//  BannerExampleViews.swift
 //  SwiftUIKit
 //
 //  Created by Maria Kharybina on 28/11/2023.
 //
 
 import SwiftUI
-
-struct BannerDemoView: View {
-    
-    @StateObject var bannerManager = BannerManager()
-    
-    var body: some View {
-        ZStack {
-            BannerMainView()
-                .environmentObject(bannerManager)
-                .zIndex(-1)
-            if bannerManager.isPresented {
-                BannerContentView(bannerManager: bannerManager)
-            }
-        }
-    }
-    
-}
 
 struct BannerMainView: View {
     @EnvironmentObject var bannerManager: BannerManager

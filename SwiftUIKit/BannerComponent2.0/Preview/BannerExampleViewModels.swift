@@ -1,5 +1,5 @@
 //
-//  BannerDemoViewModels.swift
+//  BannerExampleViewModels.swift
 //  SwiftUIKit
 //
 //  Created by Maria Kharybina on 28/11/2023.

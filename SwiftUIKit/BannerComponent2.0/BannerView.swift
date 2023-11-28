@@ -1,5 +1,5 @@
 //
-//  BannerContentView.swift
+//  BannerView.swift
 //  SwiftUIKit
 //
 //  Created by Maria Kharybina on 28/11/2023.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct BannerContentView: View {
+struct BannerView: View {
     @ObservedObject var bannerManager: BannerManager
     
     var body: some View {
-        BannerView(data: bannerManager.data)
+        BannerContentView(data: bannerManager.data)
             .animation(.spring, value: bannerManager.data)
             .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
             .onTapGesture {
