@@ -2,52 +2,56 @@
 Library of Swift UI Components for BBC Mobile Development Team.
 
 ## 📑 Table of content
-* [BannerView](#bannerview-component)
+* [BannerView]([#bannerview-component-20)
 * [NotificationView](#notificationview-component)
 * [CornerButton](#cornerbutton-component)
 
-## BannerView Component
-### Description
-My solution for banner view in SwiftUI is a View Modifier. Which means that it can only be used with another view. But the control over it can be delegated to the view model (or somewhere else) when necessary. 
+## BannerView Component 2.0
+- New version of banner view has a banner manager as environmental object. This manager is passed through the view hierarchy and is accessible to any view under the one it’s been initiated in.  
+- Can be used through the whole app/pod or initiated only for the part of navigation hierarchy - depending on where you’ll set up environment object.
+- The view model doesn’t have direct access to the banner manager. It has a published variable with banner data and the view is monitoring its changes and calling the banner manager.
 
-### How it works
-To get a banner view working inside you app you’ll need 2 things:
-1. A Swift UI view to connect it to:
+### How to set up the banner manager:
+Step 1. Find the top view you need banner manager for and add banner manager and BannerView to it.
 ```
-List {
-  ...
-} 
-.banner(data: $data, showBanner: $isShowing)
-```
-2. And two binding variables - one that triggers the appearance (and in case of loading - disappearance) of the banner and one with the information you want displayed:
-```
-@State var isShowing: Bool = false
-@State var data: BannerData = BannerData.defaultData()
-```
-
-### Additional note
-Here is an example of functions you can use to show / dismiss loading view. No additional set up needed.
-```
-func showLoadingBanner() {
-        DispatchQueue.main.async {
-            self.bannerData = BannerData(detail: "Loading...", type: .loading)
-            self.showBanner = true
-        }
-    }
+struct YourTopView: View {
+    @StateObject var bannerManager = BannerManager()
     
-    func dismissLoadingBanner() {
-        DispatchQueue.main.async {
-            withAnimation {
-                self.showBanner = false
+    var body: some View {
+        ZStack {
+            BannerMainView()
+                .environmentObject(bannerManager)
+                .zIndex(-1)
+            if bannerManager.isPresented {
+                BannerView(bannerManager: bannerManager)
             }
         }
     }
+}
 ```
 
-### Passing data from child to parent view
-We recommend to use dependency injection to trigger a banner inside the parent view from the child view.
-* If you are using **MVC** it should be covered with @State and @Bindings variables in respective views. 
-* If you are using **MVVM** check `BannerChildAndParentPreviews` folder in this project — there you'll find a working example of passing data from child view model to parent one.
+Step 2. Call it inside the view:
+```
+struct FirstTabView: View {
+    @EnvironmentObject var bannerManager: BannerManager
+    @ObservedObject var viewModel: FirstTabViewModel
+...
+}
+```
+
+Step 3. Set up .onChange modifier to listen to **published** changes in the view model:
+```
+.onChange(of: viewModel.bannerData, perform: { _ in
+                guard let newData = viewModel.bannerData else { return }
+                bannerManager.showBanner(bannerData: newData)
+            })
+```
+
+<br>More examples are inside the Preview folder of the banner component - check it out!
+
+### Backlog:
+- create a class that will be passing data from view model that can be used by different modes of communication with user - banner, notification and maybe alerts.
+
 
 ### How banners look
 
