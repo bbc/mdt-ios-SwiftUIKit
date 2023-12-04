@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BannerData: Identifiable {
+struct BannerData: Identifiable, Equatable {
     var id = UUID()
     
     var type: BannerType

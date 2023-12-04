@@ -31,7 +31,6 @@ struct NotificationSheetView: View {
                 .font(.caption)
                 .listRowSeparator(.hidden)
         }
-        .banner(data: $notificationViewModel.bannerData, showBanner: $notificationViewModel.showBanner)
     }
 }
 

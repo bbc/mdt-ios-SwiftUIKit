@@ -25,7 +25,6 @@ List {
 @State var data: BannerData = BannerData.defaultData()
 ```
 
-
 ### Additional note
 Here is an example of functions you can use to show / dismiss loading view. No additional set up needed.
 ```
@@ -44,6 +43,11 @@ func showLoadingBanner() {
         }
     }
 ```
+
+### Passing data from child to parent view
+We recommend to use dependency injection to trigger a banner inside the parent view from the child view.
+* If you are using **MVC** it should be covered with @State and @Bindings variables in respective views. 
+* If you are using **MVVM** check `BannerChildAndParentPreviews` folder in this project — there you'll find a working example of passing data from child view model to parent one.
 
 ### How banners look
 

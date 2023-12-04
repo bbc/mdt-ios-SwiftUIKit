@@ -1,5 +1,5 @@
 //
-//  BannerView.swift
+//  BannerContentView.swift
 //  SwiftUIKit
 //
 //  Created by Maria Kharybina on 15/06/2023.
@@ -7,14 +7,13 @@
 
 import SwiftUI
 
-struct BannerView: View {
+struct BannerContentView: View {
     
     var data: BannerData
     
     var body: some View {
         VStack {
             HStack {
-                
                 if data.type == .loading {
                     ProgressView()
                         .tint(.white)
@@ -48,11 +47,11 @@ struct BannerView: View {
 struct BannerView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            BannerView(data: BannerData(type: .loading, detail: "One second"))
-            BannerView(data: BannerData(type: .error, detail: "Oops"))
-            BannerView(data: BannerData(type: .info, detail: "Look!"))
-            BannerView(data: BannerData(type: .success, detail: "Yeey!"))
-            BannerView(data: BannerData(type: .warning, detail: "Wait a second"))
+            BannerContentView(data: BannerData(type: .loading, detail: "One second"))
+            BannerContentView(data: BannerData(type: .error, detail: "Oops"))
+            BannerContentView(data: BannerData(type: .info, detail: "Look!"))
+            BannerContentView(data: BannerData(type: .success, detail: "Yeey!"))
+            BannerContentView(data: BannerData(type: .warning, detail: "Wait a second"))
         }
     }
 }
