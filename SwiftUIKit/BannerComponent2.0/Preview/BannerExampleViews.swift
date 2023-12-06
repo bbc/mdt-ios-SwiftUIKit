@@ -83,9 +83,10 @@ struct FirstTabView: View {
                 }
                 .padding()
             }
-            .onChange(of: viewModel.bannerData, perform: { _ in
-                guard let newData = viewModel.bannerData else { return }
-                bannerManager.showBanner(bannerData: newData)
+            .onChange(of: viewModel.bannerData, perform: { newBannerData in
+                if let bannerData = newBannerData {
+                    bannerManager.showBanner(bannerData: bannerData)
+                }
             })
             .onChange(of: viewModel.finishedLoading, perform: { _ in
                 if viewModel.finishedLoading {
