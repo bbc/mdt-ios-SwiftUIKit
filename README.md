@@ -46,8 +46,11 @@ Step 3. Set up .onChange modifier to listen to **published** changes in the view
                 bannerManager.showBanner(bannerData: newData)
             })
 ```
+<br> **Notes:**
+- make sure that you create banner data inside the view model as an optional. Otherwise it will be recreated every time the view is (which is a lot) and onChange modifier will receive the update every time => the screen will freeze;
+- environment values (as dismiss) will cease to work when combined with environment object and NavigationLink - the easy fix is to put them inside the buttons, so the main view wouldn't see them ([known SwiftUI bug](https://stackoverflow.com/questions/72919861/presence-of-environment-dismiss-causes-list-to-constantly-rebuild-its-content-o), hopefully will be fixed in the future)
 
-<br>More examples are inside the Preview folder of the banner component - check it out!
+More examples are inside the Preview folder of the banner component - check it out!
 
 ### Backlog:
 - create a class that will be passing data from view model that can be used by different modes of communication with user - banner, notification and maybe alerts.
